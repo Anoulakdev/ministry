@@ -93,9 +93,9 @@
                                                             <th rowspan="2">ໝາຍ​ເຫດ</th>
                                                         </tr>
                                                         <tr>
-                                                            <th>ພັກ</th>
-                                                            <th>​ລັດ</th>
                                                             <th>​ຊາ​ວ​ໜຸ່ມ</th>
+                                                            <th>​ລັດ</th>
+                                                            <th>ພັກ</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="text-center align-middle">
@@ -112,9 +112,9 @@
                                                                 </td>
                                                                 <td class="text-start"><?= $row['nc_name']; ?></td>
                                                                 <td><?= $row['nc_age']; ?></td>
-                                                                <td><?= $row['nc_phak']; ?></td>
-                                                                <td><?= $row['nc_lat']; ?></td>
                                                                 <td><?= $row['nc_saonoum']; ?></td>
+                                                                <td><?= $row['nc_lat']; ?></td>
+                                                                <td><?= $row['nc_phak']; ?></td>
                                                                 <td><?= $row['nc_part']; ?></td>
                                                                 <td><?= $row['nc_reason']; ?></td>
 

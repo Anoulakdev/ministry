@@ -94,9 +94,9 @@
                                                                 <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>ພັກ</th>
-                                                                <th>​ລັດ</th>
                                                                 <th>​ຊາ​ວ​ໜຸ່ມ</th>
+                                                                <th>​ລັດ</th>
+                                                                <th>ພັກ</th>
 
                                                             </tr>
                                                         </thead>
@@ -126,9 +126,9 @@
                                                                     </td>
                                                                     <td class="text-start"><?= $row['oc_name']; ?></td>
                                                                     <td><?= $row['oc_age']; ?></td>
-                                                                    <td><?= $row['oc_phak']; ?></td>
-                                                                    <td><?= $row['oc_lat']; ?></td>
                                                                     <td><?= $row['oc_saonoum']; ?></td>
+                                                                    <td><?= $row['oc_lat']; ?></td>
+                                                                    <td><?= $row['oc_phak']; ?></td>
                                                                     <td><?= $row['oc_part']; ?></td>
                                                                 </tr>
 
