@@ -77,15 +77,11 @@ include '../apiurl.php';
                                 <table class="table" id="example">
                                     <thead class="table-light text-center align-middle">
                                         <tr>
-                                            <th rowspan="2">ລ/ດ</th>
-                                            <th colspan="2">ສະ​ຖາ​ນະ</th>
-                                            <th rowspan="2">ຊື່​ເຂົ້າ​ລະ​ບົບ</th>
-                                            <th rowspan="2">​ລະ​ຫັດ​</th>
-                                            <th rowspan="2">#</th>
-                                        </tr>
-                                        <tr>
-                                            <th>ຜູ້​ສະ​ໝັກ​ຊຸດ​ເກົ່າ</th>
-                                            <th>ຜູ້​ສະ​ໝັກ​ເປົ້າ​ໝາຍ​ໃໝ່</th>
+                                            <th>ລ/ດ</th>
+                                            <th>ສະ​ຖາ​ນະ</th>
+                                            <th>ຊື່​ເຂົ້າ​ລະ​ບົບ</th>
+                                            <th>​ລະ​ຫັດ​</th>
+                                            <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-center">
@@ -113,15 +109,6 @@ include '../apiurl.php';
                                         <?php for ($i = 0; $i < count($obj); $i++) { ?>
                                             <tr>
                                                 <td><?= $ni++; ?></td>
-                                                <?php
-                                                $sql = $conn->query("SELECT m_id FROM oscore WHERE m_id = '" . $obj[$i]->m_id . "'");
-                                                $row_cnt = $sql->num_rows;
-
-                                                if ($row_cnt > 0) {
-                                                    echo "<td class='text-success'>ທ່ານ​ລົງ​ຄະ​ແນນ​ສຳ​ເລັ​ດ​ແລ້​ວ</td>";
-                                                } else {
-                                                    echo "<td class='text-danger'>ທ່ານ​ຍັງ​ບໍ່​ທັນ​ລົງ​ຄະ​ແນນ</td>";
-                                                } ?>
 
                                                 <?php
                                                 $sql = $conn->query("SELECT m_id FROM nscore WHERE m_id = '" . $obj[$i]->m_id . "'");

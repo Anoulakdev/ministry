@@ -63,89 +63,89 @@
 
                                         <a href="naddscore" type="button" class="btn btn-primary">ຕໍ່​ໄປ</a>
 
-                                        <?php } else { ?>
+                                    <?php } else { ?>
 
-                                            <h4 class="my-4"><i class="bi bi-asterisk"></i> ຈົ່ງເລືອກ​ເອົາຫ້ອງ​ສຶບ​ຕໍ່ ແລະ ບໍ່​ສືບ​ຕໍ່</h4>
+                                        <h4 class="my-4"><i class="bi bi-asterisk"></i> ຈົ່ງເລືອກ​ເອົາຫ້ອງ​ສຶບ​ຕໍ່ ແລະ ບໍ່​ສືບ​ຕໍ່</h4>
 
-                                            <form class="row g-3" action="os_action" method="post">
-                                                <input type="hidden" name="m_id" value="<?= $_SESSION['m_id']; ?>">
+                                        <form class="row g-3" action="os_action" method="post">
+                                            <input type="hidden" name="m_id" value="<?= $_SESSION['m_id']; ?>">
 
-                                                <?php
-                                                $query = "SELECT * FROM oldcandidate";
-                                                $stmt = $conn->prepare($query);
-                                                $stmt->execute();
-                                                $result = $stmt->get_result();
-                                                $data = array();
-                                                while ($row = $result->fetch_assoc()) {
-                                                    $data[] = $row;
-                                                }
-                                                ?>
+                                            <?php
+                                            $query = "SELECT * FROM oldcandidate";
+                                            $stmt = $conn->prepare($query);
+                                            $stmt->execute();
+                                            $result = $stmt->get_result();
+                                            $data = array();
+                                            while ($row = $result->fetch_assoc()) {
+                                                $data[] = $row;
+                                            }
+                                            ?>
 
-                                                <div class="scrollable-table">
-                                                    <table class="table" id="example">
-                                                        <thead class="table-light text-center align-middle">
+                                            <div class="scrollable-table">
+                                                <table class="table" id="example">
+                                                    <thead class="table-light text-center align-middle">
+                                                        <tr>
+                                                            <th rowspan="2">ຄະ​ແນນ</th>
+                                                            <th rowspan="2">ໝາຍ​ເຫດ</th>
+                                                            <th rowspan="2">ຮູບ​ພາບ</th>
+                                                            <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
+                                                            <th rowspan="2">​ອາ​ຍຸ</th>
+                                                            <th colspan="3" class="text-center">ຕຳ​ແໜ່ງ</th>
+                                                            <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>​ຊາ​ວ​ໜຸ່ມ</th>
+                                                            <th>​ລັດ</th>
+                                                            <th>ພັກ</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="text-center align-middle">
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($data as $row) { ?>
                                                             <tr>
-                                                                <th rowspan="2">ຄະ​ແນນ</th>
-                                                                <th rowspan="2">ໝາຍ​ເຫດ</th>
-                                                                <th rowspan="2">ຮູບ​ພາບ</th>
-                                                                <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
-                                                                <th rowspan="2">​ອາ​ຍຸ</th>
-                                                                <th colspan="3" class="text-center">ຕຳ​ແໜ່ງ</th>
-                                                                <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
+                                                                <td><input class="form-check-input" type="radio" name="osc_result_<?= $row['oc_id']; ?>" value="1" checked onclick="toggleTextarea(<?= $row['oc_id']; ?>, true)">
+                                                                    <label class="form-check-label">
+                                                                        ສືບ​ຕໍ່
+                                                                    </label>
+
+                                                                    <input class="form-check-input" type="radio" name="osc_result_<?= $row['oc_id']; ?>" value="0" onclick="toggleTextarea(<?= $row['oc_id']; ?>, false)">
+                                                                    <label class="form-check-label">
+                                                                        ບໍ່ສືບ​ຕໍ່
+                                                                    </label>
+                                                                </td>
+                                                                <td>
+                                                                    <textarea name="osc_reason_<?= $row['oc_id']; ?>" rows="3" class="form-control" style="width: 200px;" id="osc_reason_<?= $row['oc_id']; ?>" disabled></textarea>
+                                                                </td>
+                                                                <td>
+                                                                    <?php if ($row['oc_pic'] != "") { ?>
+                                                                        <img src="../uploads/candidate/<?= $row['oc_pic']; ?>" width="60" height="65" class="rounded-circle">
+                                                                    <?php } else { ?>
+                                                                        <img src="../assets/img/profile-picture.jpg" alt="Profile" width="60" height="65" class="rounded-circle">
+                                                                    <?php } ?>
+                                                                </td>
+                                                                <td class="text-start"><?= $row['oc_name']; ?></td>
+                                                                <td><?= $row['oc_age']; ?></td>
+                                                                <td><?= $row['oc_saonoum']; ?></td>
+                                                                <td><?= $row['oc_lat']; ?></td>
+                                                                <td><?= $row['oc_phak']; ?></td>
+                                                                <td><?= $row['oc_part']; ?></td>
                                                             </tr>
-                                                            <tr>
-                                                                <th>​ຊາ​ວ​ໜຸ່ມ</th>
-                                                                <th>​ລັດ</th>
-                                                                <th>ພັກ</th>
 
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="text-center align-middle">
-                                                            <?php $i = 1; ?>
-                                                            <?php foreach ($data as $row) { ?>
-                                                                <tr>
-                                                                    <td><input class="form-check-input" type="radio" name="osc_result_<?= $row['oc_id']; ?>" value="1" checked onclick="toggleTextarea(<?= $row['oc_id']; ?>, true)">
-                                                                        <label class="form-check-label">
-                                                                            ສືບ​ຕໍ່
-                                                                        </label>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-                                                                        <input class="form-check-input" type="radio" name="osc_result_<?= $row['oc_id']; ?>" value="0" onclick="toggleTextarea(<?= $row['oc_id']; ?>, false)">
-                                                                        <label class="form-check-label">
-                                                                            ບໍ່ສືບ​ຕໍ່
-                                                                        </label>
-                                                                    </td>
-                                                                    <td>
-                                                                        <textarea name="osc_reason_<?= $row['oc_id']; ?>" rows="3" class="form-control" style="width: 200px;" id="osc_reason_<?= $row['oc_id']; ?>" disabled></textarea>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php if ($row['oc_pic'] != "") { ?>
-                                                                            <img src="../uploads/candidate/<?= $row['oc_pic']; ?>" width="60" height="65" class="rounded-circle">
-                                                                        <?php } else { ?>
-                                                                            <img src="../assets/img/profile-picture.jpg" alt="Profile" width="60" height="65" class="rounded-circle">
-                                                                        <?php } ?>
-                                                                    </td>
-                                                                    <td class="text-start"><?= $row['oc_name']; ?></td>
-                                                                    <td><?= $row['oc_age']; ?></td>
-                                                                    <td><?= $row['oc_saonoum']; ?></td>
-                                                                    <td><?= $row['oc_lat']; ?></td>
-                                                                    <td><?= $row['oc_phak']; ?></td>
-                                                                    <td><?= $row['oc_part']; ?></td>
-                                                                </tr>
-
-                                                            <?php } ?>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-
-                                                <div class="col-md-10">
-                                                    <button type="submit" name="add" id="add" class="btn btn-primary">ລົງ​ຄະ​ແນນ</button>
-                                                    <button class="btn btn-primary" type="button" disabled id="load">
-                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                                        ກຳ​ລັງ​ລົງ​ຄະ​ແນນ...
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        <?php } ?>
+                                            <div class="col-md-10">
+                                                <button type="submit" name="add" id="add" class="btn btn-primary">ລົງ​ຄະ​ແນນ</button>
+                                                <button class="btn btn-primary" type="button" disabled id="load">
+                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                    ກຳ​ລັງ​ລົງ​ຄະ​ແນນ...
+                                                </button>
+                                            </div>
+                                        </form>
+                                    <?php } ?>
 
                                 </div>
 
@@ -168,9 +168,17 @@
     <?php include '../style/script.php'; ?>
 
     <script>
-        function toggleTextarea(id, disable) {
-            const textarea = document.getElementById('osc_reason_' + id);
-            textarea.disabled = disable;
+        function toggleTextarea(oc_id, isContinue) {
+            const textarea = document.getElementById(`osc_reason_${oc_id}`);
+
+            if (isContinue) {
+                textarea.disabled = true;
+                textarea.removeAttribute('required');
+                textarea.value = ''; // Optional: Clear the textarea if needed
+            } else {
+                textarea.disabled = false;
+                textarea.setAttribute('required', 'required');
+            }
         }
 
         document.getElementById("load").style.display = "none"

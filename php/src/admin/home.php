@@ -25,13 +25,13 @@ $result13 = $conn->query($sql13);
 $row13 = $result13->fetch_assoc();
 
 
-$sql15 = "SELECT count(oc_id) as coc_id FROM oldcandidate";
+// $sql15 = "SELECT count(oc_id) as coc_id FROM oldcandidate";
 
-$result15 = $conn->query($sql15);
+// $result15 = $conn->query($sql15);
 
-$row15 = $result15->fetch_assoc();
+// $row15 = $result15->fetch_assoc();
 
-$candidateall = $row12['cnc_id'] + $row15['coc_id'];
+// $candidateall = $row12['cnc_id'] + $row15['coc_id'];
 
 ?>
 
@@ -107,7 +107,7 @@ $candidateall = $row12['cnc_id'] + $row15['coc_id'];
                                             <i class="bi bi-people"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6><?= $candidateall; ?> ທ່ານ</h6>
+                                            <h6><?= $row12['cnc_id']; ?> ທ່ານ</h6>
 
 
                                         </div>

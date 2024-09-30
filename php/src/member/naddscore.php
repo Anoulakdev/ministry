@@ -158,7 +158,10 @@
     <script>
         var checkboxs = document.getElementsByName('nc_id[]');
         var submitButton = document.getElementById('add');
+        var loadingButton = document.getElementById('load');
         var limit = 4;
+
+        // Checkbox logic to enable/disable the submit button based on selection
         for (var i = 0; i < checkboxs.length; i++) {
             checkboxs[i].onclick = function() {
                 var checkedCount = document.querySelectorAll('input[name="nc_id[]"]:checked').length;
@@ -166,25 +169,30 @@
                     for (var j = 0; j < checkboxs.length; j++) {
                         if (!checkboxs[j].checked) {
                             checkboxs[j].disabled = true;
-                            submitButton.disabled = false;
                         }
                     }
+                    submitButton.disabled = false;
                 } else {
                     for (var j = 0; j < checkboxs.length; j++) {
                         checkboxs[j].disabled = false;
-                        submitButton.disabled = true;
                     }
+                    submitButton.disabled = true;
                 }
             }
         }
 
+        // Hide the loading button initially
+        loadingButton.style.display = "none";
 
-        document.getElementById("load").style.display = "none"
+        // Add onsubmit handler to the form
+        document.querySelector("form").onsubmit = function() {
+            // Hide submit button and show loading spinner
+            submitButton.style.display = "none";
+            loadingButton.style.display = "inline";
 
-        function loads() {
-            document.getElementById("add").style.display = "none"
-            document.getElementById("load").style.display = "inline"
-        }
+            // Let the form be submitted as usual
+            return true;
+        };
     </script>
 
 </body>

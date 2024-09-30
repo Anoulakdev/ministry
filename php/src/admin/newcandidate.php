@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ຜູ້​ສະ​ໝັກເປົ້າ​ໝາຍ​ໃໝ່</title>
+    <title>ຜູ້​ສະ​ໝັກ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -42,7 +42,7 @@
 
 
             <div class="pagetitle py-2">
-                <h1>ຜູ້​ສະ​ໝັກເປົ້າ​ໝາຍ​ໃໝ່</h1>
+                <h1>ຜູ້​ສະ​ໝັກ</h1>
 
             </div><!-- End Page Title -->
 

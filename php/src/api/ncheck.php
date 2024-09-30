@@ -6,14 +6,15 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include "../config.php";
 
-$memberdeletes = array();
-foreach ($conn->query('SELECT DISTINCT m.m_id, m.m_username FROM nscore as nc inner join member as m on nc.m_id = m.m_id') as $row) {
-    $memberdelete = array(
-        'm_id' => $row['m_id'],
+$nchecks = array();
+foreach ($conn->query('SELECT count(nsc.m_id) / 30 as cm_id, m.m_username FROM nscore as nsc inner join member as m on nsc.m_id = m.m_id group by m.m_username order by cm_id desc') as $row) {
+    $ncheck = array(
+        
         'm_username' => $row['m_username'],
+        'ncount' => $row['cm_id'],
     );
-    array_push($memberdeletes, $memberdelete);
+    array_push($nchecks, $ncheck);
 }
-echo json_encode($memberdeletes);
+echo json_encode($nchecks);
 $conn = null;
 ?>
