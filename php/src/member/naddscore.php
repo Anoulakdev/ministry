@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ລົງ​ຄະ​ແນນເປົ້າ​ໝາຍ​ໃໝ່</title>
+    <title>ລົງ​ຄະ​ແນນ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -38,7 +38,7 @@
 
 
             <div class="pagetitle py-2">
-                <h1>ລົງ​ຄະ​ແນນເປົ້າ​ໝາຍ​ໃໝ່</h1>
+                <h1>ລົງ​ຄະ​ແນນ</h1>
             </div><!-- End Page Title -->
 
             <section class="section dashboard">
@@ -64,7 +64,7 @@
 
                                     <?php } else { ?>
 
-                                        <h4 class="my-4"><i class="bi bi-asterisk"></i> ຈົ່ງເລືອກ​ເອົາ 4 ທ່ານທີ່ບໍ່​ເອົາ.</h4>
+                                        <h4 class="my-4"><i class="bi bi-asterisk"></i> ຈົ່ງເລືອກອອກ 4 ສ​ະ​ຫາຍທີ່​ຕົນ​ເອງບໍ່​ເລືອກເອົາ.</h4>
 
                                         <form class="row g-3" action="ns_action" method="post">
                                             <input type="hidden" name="m_id" value="<?= $_SESSION['m_id']; ?>">
