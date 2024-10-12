@@ -84,7 +84,7 @@
                                                 <table class="table" id="example">
                                                     <thead class="table-light text-center align-middle">
                                                         <tr>
-                                                            <th rowspan="2">ລ/ດ</th>
+                                                            <th rowspan="2" colspan="2">ລ/ດ</th>
                                                             <th rowspan="2">ຮູບ​ພາບ</th>
                                                             <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
                                                             <th rowspan="2">​ອາ​ຍຸ</th>
@@ -103,6 +103,7 @@
                                                         <?php foreach ($data as $row) { ?>
                                                             <tr>
                                                                 <td><input class="form-check-input" type="checkbox" name="nc_id[]" value="<?= $row['nc_id']; ?>"></td>
+                                                                <td><?= $i++; ?></td>
                                                                 <td>
                                                                     <?php if ($row['nc_pic'] != "") { ?>
                                                                         <img src="../uploads/candidate/<?= $row['nc_pic']; ?>" width="60" height="65" class="rounded-circle">
