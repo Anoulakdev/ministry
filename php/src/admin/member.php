@@ -10,7 +10,7 @@ include '../apiurl.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ຜູ້​ແທນ</title>
+    <title>ກຳ​ມະ​ການ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -52,7 +52,7 @@ include '../apiurl.php';
     <main id="main" class="main">
 
         <div class="pagetitle py-2">
-            <h1>ຜູ້​ແທນ</h1>
+            <h1>ກຳ​ມະ​ການ</h1>
 
         </div><!-- End Page Title -->
 
@@ -63,13 +63,40 @@ include '../apiurl.php';
                     <div class="card">
                         <div class="card-body">
 
+                            <div class="modal fade" id="addModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">ເພີ່ມກຳ​ມະ​ການ</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="row g-3" action="m_action" method="post">
+                                                <div class="col-md-12">
+                                                    <label for="m_username" class="form-label">ຊື່​ເຂົ້າ​ລະ​ບົບ</label>
+                                                    <input type="text" name="m_username" class="form-control" required>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="m_password" class="form-label">ລະ​ຫັດ</label>
+                                                    <input type="text" name="m_password" class="form-control" required>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
+                                            <button type="submit" name="add" class="btn btn-primary">ເພີ່ມ​ຂໍ້​ມູນ</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="d-flex justify-content-between">
-                                <form action="m_action" method="post" class="my-3">
-                                    <button type="submit" name="add" class="btn btn-primary">ເພີ່ມ​ຜູ້​ແທນ</button>
-                                </form>
-                                <a href="excel" type="button" class="btn btn-success my-3" target="_blank">
+                                <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#addModal">
+                                    ເພີ່ມກຳ​ມະ​ການ
+                                </button>
+                                <!-- <a href="excel" type="button" class="btn btn-success my-3" target="_blank">
                                     <i class="bi bi-filetype-xlsx"></i> EXCEL </a>
-                                </a>
+                                </a> -->
                             </div>
 
                             <!-- Default Table -->
@@ -78,7 +105,6 @@ include '../apiurl.php';
                                     <thead class="table-light text-center align-middle">
                                         <tr>
                                             <th>ລ/ດ</th>
-                                            <th>ສະ​ຖາ​ນະ</th>
                                             <th>ຊື່​ເຂົ້າ​ລະ​ບົບ</th>
                                             <th>​ລະ​ຫັດ​</th>
                                             <th>#</th>
@@ -109,16 +135,6 @@ include '../apiurl.php';
                                         <?php for ($i = 0; $i < count($obj); $i++) { ?>
                                             <tr>
                                                 <td><?= $ni++; ?></td>
-
-                                                <?php
-                                                $sql = $conn->query("SELECT m_id FROM nscore WHERE m_id = '" . $obj[$i]->m_id . "'");
-                                                $row_cnt = $sql->num_rows;
-
-                                                if ($row_cnt > 0) {
-                                                    echo "<td class='text-success'>ທ່ານ​ລົງ​ຄະ​ແນນ​ສຳ​ເລັ​ດ​ແລ້​ວ</td>";
-                                                } else {
-                                                    echo "<td class='text-danger'>ທ່ານ​ຍັງ​ບໍ່​ທັນ​ລົງ​ຄະ​ແນນ</td>";
-                                                } ?>
                                                 <td><?= $obj[$i]->m_username; ?></td>
                                                 <td><?= $obj[$i]->m_password; ?></td>
                                                 <td>

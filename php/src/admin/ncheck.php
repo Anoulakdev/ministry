@@ -10,7 +10,7 @@ include '../apiurl.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​ເປົ້າ​ໝາຍ​ໃໝ່</title>
+    <title>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -56,7 +56,7 @@ include '../apiurl.php';
 
 
             <div class="pagetitle py-2">
-                <h1>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​ເປົ້າ​ໝາຍ​ໃໝ່</h1>
+                <h1>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​</h1>
 
             </div><!-- End Page Title -->
 
@@ -77,7 +77,7 @@ include '../apiurl.php';
                                         <thead>
                                             <tr>
                                                 <th>ລ/ດ</th>
-                                                <th>​ຊື່​ເຂົ້າ​ລະ​ບົບ</th>
+                                                <th>ເລກໃບ​ບິນ</th>
                                                 <th>ສະ​ເລ່ຍ</th>
                                             </tr>
                                         </thead>
@@ -106,9 +106,9 @@ include '../apiurl.php';
                                             <?php for ($i = 0; $i < count($obj); $i++) { ?>
                                                 <tr>
                                                     <td><?= $ni++; ?></td>
-                                                    <td><?= $obj[$i]->m_username; ?></td>
+                                                    <td><?= $obj[$i]->s_no; ?></td>
                                                     <td>
-                                                        <?= $obj[$i]->ncount; ?>
+                                                        <?= $obj[$i]->sno; ?>
                                                     </td>
                                                 </tr>
 

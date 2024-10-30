@@ -9,7 +9,7 @@ include 'm_action.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ແກ້​ໄຂຜູ້​ແທນ</title>
+    <title>ແກ້​ໄຂກຳ​ມະ​ການ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -29,7 +29,7 @@ include 'm_action.php';
         <div class="container">
 
             <div class="pagetitle py-2">
-                <h1>ແກ້​ໄຂຜູ້​ແທນ</h1>
+                <h1>ແກ້​ໄຂກຳ​ມະ​ການ</h1>
 
             </div><!-- End Page Title -->
 
@@ -49,7 +49,11 @@ include 'm_action.php';
 
                                 <form class="row g-3 m-2" action="m_action" method="post">
                                     <input type="hidden" name="m_id" value="<?= $row['m_id']; ?>">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <label for="m_username" class="form-label">​ລະ​ຫັດ​</label>
+                                        <input type="text" name="m_username" value="<?= $row['m_username']; ?>" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
                                         <label for="m_password" class="form-label">​ລະ​ຫັດ​</label>
                                         <input type="text" name="m_password" value="<?= $row['m_password']; ?>" class="form-control" required>
                                     </div>

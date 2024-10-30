@@ -34,28 +34,28 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="member">
                 <i class="bi bi-person"></i>
-                <span>ຜູ້​ແທນ</span>
+                <span>ກຳ​ມະ​ການ</span>
             </a>
         </li>
 
-        <!-- <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link collapsed" href="sheet">
                 <i class="bi bi-receipt"></i>
                 <span>ໃບ​ລົງ​ຄະ​​ແນນ</span>
             </a>
-        </li> -->
-
-        <!-- <li class="nav-item">
-            <a class="nav-link collapsed" href="scoredetail">
-                <i class="bi bi-receipt"></i>
-                <span>ລາຍ​ລະ​ອຽດ​ການ​ລົງ​ຄະ​​ແນນ</span>
-            </a>
-        </li> -->
+        </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="memberdelete">
+            <a class="nav-link collapsed" href="membersearch">
                 <i class="bi bi-receipt"></i>
-                <span>ຜູ້​ແທນ​ລົງ​ຄະ​​ແນນ​ສຳ​ເລັດ</span>
+                <span>ລາຍ​ລະ​ອຽດກຳ​ມະ​ການ​</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch">
+                <i class="bi bi-receipt"></i>
+                <span>ລາຍ​ລະ​ອຽດ​ໃບ​ລົງ​ຄະ​ແນນ</span>
             </a>
         </li>
 
@@ -79,9 +79,6 @@
                 <span>​ຜົນ​ຄະ​ແນນ</span>
             </a>
         </li>
-
-
-
     </ul>
 
 </aside><!-- End Sidebar-->

@@ -14,7 +14,7 @@ ob_end_flush();
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ຄຳ​ເຫັນ​ຕໍ່​ຄະ​ນະ​ຊຸດ​ເກົ່າ</title>
+    <title>ລາຍ​ລະ​ອຽດ​ໃບ​ລົງ​ຄະ​ແນນ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -53,10 +53,10 @@ ob_end_flush();
     <?php include '../sidebar/sidebar_a.php'; ?>
 
     <?php
-    if (isset($_GET['oc_id'])) {
-        $oc_id = $_GET['oc_id'];
+    if (isset($_GET['s_no'])) {
+        $s_no = $_GET['s_no'];
     } else {
-        $oc_id = "";
+        $s_no = "";
     }
     ?>
 
@@ -64,7 +64,7 @@ ob_end_flush();
     <main id="main" class="main">
 
         <div class="pagetitle py-2">
-            <h1>ຄຳ​ເຫັນ​ຕໍ່​ຄະ​ນະ​ຊຸດ​ເກົ່າ</h1>
+            <h1>ລາຍ​ລະ​ອຽດ​ໃບ​ລົງ​ຄະ​ແນນ</h1>
 
         </div><!-- End Page Title -->
 
@@ -77,20 +77,9 @@ ob_end_flush();
 
                             <div class="d-flex justify-content-start">
                                 <form action="" method="GET" class="my-3 d-flex align-items-center">
-                                    <select name="oc_id" class="form-select me-3">
-                                        <option value="">---ເລືອກຜູ້​ສະ​ໝັກ​ຊຸດ​ເກົ່າ---</option>
-                                        <?php
-                                        $query3 = 'SELECT * FROM oldcandidate ORDER BY oc_id ASC';
-                                        $stmt3 = $conn->prepare($query3);
-                                        $stmt3->execute();
-                                        $result3 = $stmt3->get_result();
 
-                                        while ($row3 = $result3->fetch_assoc()) {
-                                            $selected = ($oc_id == $row3['oc_id']) ? "selected" : "";
-                                            echo "<option value='" . htmlspecialchars($row3['oc_id']) . "' $selected>" . htmlspecialchars($row3['oc_name']) . "</option>";
-                                        }
-                                        ?>
-                                    </select>
+                                    <input type="text" name="s_no" id="s_no" class="form-control me-3" maxlength="3" value="<?= $s_no; ?>" placeholder="ປ້ອນ​ເລກ​ໃບ​​ບິນ" required>
+
                                     <button class="btn btn-primary" type="submit" name="filter">ຄົ້ນຫາ</button>
                                 </form>
                             </div>
@@ -99,29 +88,32 @@ ob_end_flush();
                             <hr />
 
                             <?php if (isset($_GET['filter'])) { ?>
-
-                                <div class="d-flex justify-content-end">
-                                    <a href="ocexcel?oc_id=<?= htmlspecialchars($_GET['oc_id']); ?>" class="btn btn-success my-3" target="_blank">
-                                        <i class="bi bi-filetype-xlsx"></i> EXCEL
-                                    </a>
-                                </div>
                                 <!-- Default Table -->
                                 <div class="scrollable-table">
                                     <table class="table" id="example">
                                         <thead class="table-light text-center align-middle">
                                             <tr>
-                                                <th style="width: 15%;">ລ/ດ</th>
-                                                <th>ຄຳ​ເຫັນ</th>
+                                                <th rowspan="2">ລ/ດ</th>
+                                                <th rowspan="2">ຮູບ​ພາບ</th>
+                                                <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
+                                                <th rowspan="2">​ອາ​ຍຸ</th>
+                                                <th colspan="3" class="text-center">ຕຳ​ແໜ່ງ</th>
+                                                <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
                                             </tr>
-                                        </thead>
+                                            <tr>
+                                                <th>​ຊາ​ວ​ໜຸ່ມ</th>
+                                                <th>​ລັດ</th>
+                                                <th>ພັກ</th>
+                                            </tr>
 
+                                        </thead>
                                         <tbody>
                                             <?php
 
                                             $curl = curl_init();
 
                                             curl_setopt_array($curl, array(
-                                                CURLOPT_URL => $apireason . '?oc_id=' . $oc_id,
+                                                CURLOPT_URL => $apisheetsearch . '?s_no=' . $s_no,
                                                 CURLOPT_RETURNTRANSFER => true,
                                                 CURLOPT_ENCODING => '',
                                                 CURLOPT_MAXREDIRS => 10,
@@ -139,9 +131,20 @@ ob_end_flush();
                                             <?php $ni = 1; ?>
                                             <?php for ($i = 0; $i < count($obj); $i++) { ?>
                                                 <tr>
-                                                    <td class="text-center"><?= $ni++; ?></td>
-                                                    <td><?= $obj[$i]->osc_reason; ?></td>
-
+                                                    <td><?= $ni++; ?></td>
+                                                    <td>
+                                                        <?php if ($obj[$i]->nc_pic != "") { ?>
+                                                            <img src="../uploads/candidate/<?= $obj[$i]->nc_pic; ?>" width="60" height="65" class="rounded-circle">
+                                                        <?php } else { ?>
+                                                            <img src="../assets/img/profile-picture.jpg" alt="Profile" width="60" height="65" class="rounded-circle">
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td class="text-start"><?= $obj[$i]->nc_name; ?></td>
+                                                    <td><?= $obj[$i]->nc_age; ?></td>
+                                                    <td><?= $obj[$i]->nc_saonoum; ?></td>
+                                                    <td><?= $obj[$i]->nc_lat; ?></td>
+                                                    <td><?= $obj[$i]->nc_phak; ?></td>
+                                                    <td><?= $obj[$i]->nc_part; ?></td>
                                                 </tr>
 
                                             <?php } ?>
@@ -164,31 +167,6 @@ ob_end_flush();
     <?php include '../style/script.php'; ?>
 
     <script>
-        $(function() {
-            $("#example").DataTable({
-                "oLanguage": {
-                    "sProcessing": "ກຳລັງດຳເນີນການ...",
-                    "sLengthMenu": "ສະແດງ _MENU_ ແຖວ",
-                    "sZeroRecords": "ບໍ່ມີຂໍ້ມູນຄົ້ນຫາ",
-                    "sInfo": "ສະແດງ _START_ ຖີງ _END_ ຈາກ _TOTAL_ ແຖວ",
-                    "sInfoEmpty": "ສະແດງ 0 ຖີງ 0 ຈາກ 0 ແຖວ",
-                    "sInfoFiltered": "(ຈາກຂໍ້ມູນທັງໝົດ _MAX_ ແຖວ)",
-                    "sSearch": "ຄົ້ນຫາ :",
-                    "oPaginate": {
-                        "sFirst": "ເລີ່ມຕົ້ນ",
-                        "sPrevious": "ກັບຄືນ",
-                        "sNext": "ຕໍ່ໄປ",
-                        "sLast": "ສຸດທ້າຍ"
-                    }
-                },
-                "responsive": false,
-                "lengthChange": true,
-                "autoWidth": false,
-
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-        });
-
         var loader = document.getElementById('preloader');
 
         window.addEventListener('load', function() {

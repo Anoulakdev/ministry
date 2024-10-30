@@ -35,14 +35,12 @@ if (isset($_POST['m_username'])) {
 
     $_SESSION["m_username"] = $row["m_username"];
 
-    $_SESSION["m_password"] = $row["m_password"];
-
     $_SESSION["m_status"] = $row["m_status"];
 
 
     if ($_SESSION["m_status"] == "1") {
 
-      Header("Location: naddscore");
+      Header("Location: addscore");
     }
   } else {
 

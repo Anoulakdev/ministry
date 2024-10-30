@@ -17,3 +17,4 @@
 <link rel="stylesheet" href="../assets/vendor/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="../assets/vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
