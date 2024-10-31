@@ -79,12 +79,21 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between my-3">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                                        ເພີ່ມໃບ​ລົງ​ຄະ​ແນນ
-                                    </button>
-                                    <a href="printall" type="button" class="btn btn-secondary" target="_blank">
-                                        <i class="bi bi-printer"></i> ພີ​ມ​ທັງ​ໝົດ
-                                    </a>
+                                    <div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                                            ເພີ່ມໃບ​ລົງ​ຄະ​ແນນ
+                                        </button>
+                                    </div>
+                                    <form method="POST" action="printall" target="_blank">
+                                        <div class="d-flex justify-content-end">
+                                            <input type="number" name="page1" class="form-control me-2" required min="1" placeholder="ໜ້າ​ທຳ​ອິດ">
+                                            <input type="number" name="page2" class="form-control me-2" required min="1" placeholder="​ໜ້າ​ສຸດ​ທ້າຍ">
+
+                                            <button class="btn btn-secondary btn-sm">
+                                                <i class="bi bi-printer"></i> ພີມ​
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
 
 
@@ -104,23 +113,30 @@
                                         <thead>
                                             <tr>
                                                 <th>ລ/ດ</th>
+                                                <th>ສະ​ຖາ​ນະ</th>
                                                 <th>ເລກ​ທີໃບ​ລົງ​ຄະ​ແນນ</th>
-                                                <!-- <th>ຮູບ​ບ​າ​ໂຄ້ດ</th> -->
                                                 <th>#</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $i = 1; ?>
-                                            <?php foreach ($data as $row){ ?>
+                                            <?php foreach ($data as $row) { ?>
                                                 <tr>
                                                     <td><?= $i++; ?></td>
-                                                    <td><?= $row['s_no']; ?></td>
-                                                    <!-- <td><?php
-                                                        require '../barcode/vendor/autoload.php';
+                                                    <?php
+                                                    $sql1 = $conn->query("SELECT COUNT(s_no) AS sno FROM nscore WHERE s_no = " . $row['s_no']);
+                                                    $row1 = $sql1->fetch_assoc();
+                                                    $sno = $row1['sno'];
+                                                    $countsno = $sno / 24;
 
-                                                        $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-                                                        echo $generator->getBarcode($row['s_no'], $generator::TYPE_CODE_128, 3, 30);
-                                                        ?></td> -->
+                                                    if ($countsno == 1) {
+                                                        echo "<td class='text-success'>ໃບ​ບິນ​ນີ້​ລົງ​ຄົບ​ຈຳ​ນວນ</td>";
+                                                    } elseif ($countsno > 1){
+                                                        echo "<td class='text-primary'>ໃບ​ບິນ​ນີ້​ລົງ​ເກີນ</td>";
+                                                    } else {
+                                                        echo "<td class='text-danger'>ໃບ​ບິນ​ນີ້​ລົງ​ຍັງ​ບໍ່​ຄົບ</td>";
+                                                    } ?>
+                                                    <td><?= $row['s_no']; ?></td>
                                                     <td>
                                                         <a href="print?s_id=<?= $row['s_id']; ?>" type="button" class="btn btn-secondary" target="_blank"><i class="bi bi-printer"></i></a>
                                                         <a href="#edit_<?= $row['s_id']; ?>" type="button" class="btn btn-primary" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></a>

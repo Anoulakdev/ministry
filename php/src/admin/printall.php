@@ -2,8 +2,14 @@
 require_once('../tcpdf/tcpdf.php');
 include '../config.php';
 
+if (isset($_POST)) {
+    $page1 = $_POST['page1'];
+    $page2 = $_POST['page2'];
+} else {
+    echo "Error: No data received.";
+}
 // Retrieve data from the database
-$sql = "SELECT * FROM sheet WHERE s_id BETWEEN 1 AND 5";
+$sql = "SELECT * FROM sheet WHERE s_id BETWEEN '$page1' AND '$page2'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $data = array();
