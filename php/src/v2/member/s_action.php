@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$m_id = $_POST['m_id'];
 	$s_no = $_POST['s_no'];
 
-	$checksno = $conn->query("SELECT * FROM sheet WHERE s_no = $s_no");
+	$checksno = $conn->query("SELECT * FROM sheet WHERE s_no LIKE '$s_no'");
 	$row_check = $checksno->num_rows;
 
 	if ($row_check > 0) {
