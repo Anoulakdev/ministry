@@ -19,13 +19,13 @@ $html .= '<tr>
             <th rowspan="2" width="6%" style="text-align:center; vertical-align:middle;">ຊົນ​ເຜົ່າ</th>
             <th rowspan="2" width="5%" style="text-align:center; vertical-align:middle;">​ອາ​ຍຸ</th>
             <th colspan="3" width="34%" style="text-align:center; vertical-align:middle;">ຕຳ​ແໜ່ງ</th>
-            <th rowspan="2" width="13%" style="text-align:center; vertical-align:middle;">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
-            <th rowspan="2" width="11%" style="text-align:center; vertical-align:middle;">ໝາຍ​ເຫດ</th>
+            <th rowspan="2" width="14.3%" style="text-align:center; vertical-align:middle;">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
+            <th rowspan="2" width="9.8%" style="text-align:center; vertical-align:middle;">ໝາຍ​ເຫດ</th>
         </tr>
         <tr>
             <th width="13%" style="text-align:center; vertical-align:middle;">​ຊາ​ວ​ໜຸ່ມ</th>
-            <th width="12%" style="text-align:center; vertical-align:middle;">​ລັດ</th>
-            <th width="9%" style="text-align:center; vertical-align:middle;">ພັກ</th>
+            <th width="14%" style="text-align:center; vertical-align:middle;">​ລັດ</th>
+            <th width="7%" style="text-align:center; vertical-align:middle;">ພັກ</th>
         </tr>';
 $html .= '</table>';
 
@@ -80,34 +80,45 @@ foreach ($data3 as $value) {
     $num++;
     $sno = $value['nc_id'];
 
+    // คอลัมน์ตัวเลขลำดับ
     $pdf->Cell(8.1, 16, $num, 1, 0, 'C', 1);
-    // $pdf->Cell(0.1, 16, '', 1, 0, 'C', 0);
-    $pdf->Image('../uploads/candidate/' . $value['nc_pic'], '', '', 14.3, 16, '', 'C', '', false, 300, '', false, false, 1, false, false, false);
+
+    // คอลัมน์รูปภาพ
+    $pdf->Image('../uploads/candidate/' . $value['nc_pic'], '', '', 14.3, 16, '', '', '', false, 300, '', false, false, 1, false, false, false);
     $pdf->Cell(14.3, 16, '', 0, 0, 'C', 0);
+
+    // คอลัมน์ชื่อ
     $pdf->Cell(41, 16, $value['nc_name'], 1, 0, 'L', 1);
+
+    // คอลัมน์เผ่า
     $pdf->Cell(12.2, 16, $value['tribe'], 1, 0, 'C', 1);
+
+    // คอลัมน์อายุ
     $pdf->Cell(10.1, 16, $value['nc_age'], 1, 0, 'C', 1);
-    $pdf->WriteHTMLCell(26.6, 16, '', '', $value['nc_saonoum'], 1, 0, 'C', 1);
-    $pdf->WriteHTMLCell(24.5, 16, '', '', $value['nc_lat'], 1, 0, 'C', 1);
-    $pdf->MultiCell(18.3, 16, $value['nc_phak'], 1, 'C', 1, 0);
-    $pdf->WriteHTMLCell(26.5, 16, '', '', $value['nc_part'], 1, 0, 'C', 1);
-    $pdf->Cell(22.5, 16, $value['nc_reason'], 1, 1, 'C', 1);
-    // $pdf->write1DBarcode($sno, 'C128', '', '', '', 16, 0.6, array(
-    //     'position' => 'R',
-    //     'align' => 'B',
-    //     'stretch' => true,
-    //     'fitwidth' => true,
-    //     'border' => true,
-    //     'hpadding' => 'auto',
-    //     'vpadding' => 'auto',
-    //     'fgcolor' => array(0, 0, 0),
-    //     'bgcolor' => false,
-    //     'text' => true,
-    //     'font' => 'phetsarath_ot',
-    //     'fontsize' => 4,
-    //     'stretchtext' => 12,
-    // ), 'N');
+
+    if (strlen($value['nc_saonoum']) > 70) {
+        $pdf->SetFontSize(8.2);
+        $pdf->MultiCell(26.6, 16, $value['nc_saonoum'], 1, 'C', 1, 0);
+    } else {
+        $pdf->SetFontSize(8.2);
+        $pdf->Cell(26.6, 16, $value['nc_saonoum'], 1, 0, 'C', 0);
+    }
+
+    $pdf->SetFontSize(9);
+    $pdf->Cell(28.5, 16, $value['nc_lat'], 1, 0, 'C', 0);
+    $pdf->Cell(14.3, 16, $value['nc_phak'], 1, 0, 'C', 0);
+
+    if (strlen($value['nc_part']) > 63) {
+        $pdf->MultiCell(29.1, 16, $value['nc_part'], 1, 'C', 1, 0);
+    } else {
+        $pdf->Cell(29.2, 16, $value['nc_part'], 1, 0, 'C', 0);
+    }
+    // คอลัมน์ nc_reason
+    $pdf->Cell(20, 16, $value['nc_reason'], 1, 1, 'C', 1);
 }
+
+
+
 
 // Add notes and closing statements
 $pdf->Ln(5);
