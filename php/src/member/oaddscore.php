@@ -65,7 +65,7 @@
 
                                     <?php } else { ?>
 
-                                        <h4 class="my-4"><i class="bi bi-asterisk"></i> ຈົ່ງເລືອກ​ເອົາຫ້ອງ​ສຶບ​ຕໍ່ ແລະ ບໍ່​ສືບ​ຕໍ່</h4>
+                                        <h4 class="my-4 lh-base"><i class="bi bi-asterisk"></i> ຄະນະບໍລິຫານງານຊຸດເກົ່າ ສືບຕໍ່ລົງສະໝັກ( ຖ້າເຫັນດີ ໃຫ້ຕິກ: ສືບຕໍ່; ຖ້າບໍ່ເຫັນດີ ໃຫ້ຕິກ: ບໍ່ສືບຕໍ່ ພ້ອມທັງເຫດຜົນ).</h4>
 
                                         <form class="row g-3" action="os_action" method="post" onsubmit="return handleSubmit()">
                                             <input type="hidden" name="m_id" value="<?= $_SESSION['m_id']; ?>">

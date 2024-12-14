@@ -67,6 +67,13 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="ncheckscore">
+                <i class="bi bi-receipt"></i>
+                <span>ລາຍ​ລະ​ອຽດ​ລົງ​ຄະ​ແນນ​ຊຸດ​ໃໝ່</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" href="oscore">
                 <i class="bi bi-sliders"></i>
                 <span>​ຜົນ​ຄະ​ແນນ​ຊຸດ​ເກົ່າ</span>

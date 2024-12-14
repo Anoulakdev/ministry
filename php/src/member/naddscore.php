@@ -64,7 +64,7 @@
 
                                     <?php } else { ?>
 
-                                        <h4 class="my-4"><i class="bi bi-asterisk"></i> ໃຫ້ຕິກເອົາ 5 ສະຫາຍ ທີ່ທ່ານບໍ່ເລືອກເອົາ.</h4>
+                                        <h4 class="my-4 lh-base"><i class="bi bi-asterisk"></i> ບັນດາຄະນະໜ່ວຍກໍາມະບານຮາກຖານ ລົງສະໝັກຊຸດໃໝ່ ( ໃຫ້ຕິກເອົາ 5 ສະຫາຍ ທີ່ທ່ານເລືອກເອົາ).</h4>
 
                                         <form class="row g-3" action="ns_action" method="post">
                                             <input type="hidden" name="m_id" value="<?= $_SESSION['m_id']; ?>">

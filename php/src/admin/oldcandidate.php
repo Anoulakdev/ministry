@@ -76,12 +76,12 @@
                                                         <input type="text" name="oc_kammaban" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="oc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
-                                                        <input type="text" name="oc_phak" class="form-control" required>
-                                                    </div>
-                                                    <div class="col-md-12">
                                                         <label for="oc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
                                                         <input type="text" name="oc_lat" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="oc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
+                                                        <input type="text" name="oc_phak" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label for="oc_part" class="form-label">​ກົມ​ກອງ​ປະ​ຈຳ​ການ</label>
@@ -120,8 +120,8 @@
                                                 <th>ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
                                                 <th>​ອາຍ​ຸ</th>
                                                 <th>​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</th>
-                                                <th>​ຕຳ​ແໜ່ງ​ພັກ</th>
                                                 <th>​ຕຳ​ແໜ່ງ​ລັດ</th>
+                                                <th>​ຕຳ​ແໜ່ງ​ພັກ</th>
                                                 <th>​ກົມ​ກອງ​ປະ​ຈຳ​ການ</th>
                                                 <th>#</th>
                                             </tr>
@@ -134,8 +134,8 @@
                                                     <td class="text-start"><?= $row['oc_name']; ?></td>
                                                     <td><?= $row['oc_age']; ?></td>
                                                     <td><?= $row['oc_kammaban']; ?></td>
-                                                    <td><?= $row['oc_phak']; ?></td>
                                                     <td><?= $row['oc_lat']; ?></td>
+                                                    <td><?= $row['oc_phak']; ?></td>
                                                     <td><?= $row['oc_part']; ?></td>
                                                     <td>
                                                         <a href="#edit_<?= $row['oc_id']; ?>" type="button" class="btn btn-primary" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></a>
@@ -167,12 +167,12 @@
                                                                         <input type="text" name="oc_kammaban" value="<?= $row['oc_kammaban']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="oc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
-                                                                        <input type="text" name="oc_phak" value="<?= $row['oc_phak']; ?>" class="form-control" required>
-                                                                    </div>
-                                                                    <div class="col-md-12 mt-2">
                                                                         <label for="oc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
                                                                         <input type="text" name="oc_lat" value="<?= $row['oc_lat']; ?>" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="oc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
+                                                                        <input type="text" name="oc_phak" value="<?= $row['oc_phak']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
                                                                         <label for="oc_part" class="form-label">​ກົມ​ກອງ​​ປະ​ຈຳ​ການ</label>

@@ -76,12 +76,12 @@
                                                         <input type="text" name="nc_kammaban" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
-                                                        <input type="text" name="nc_phak" class="form-control" required>
-                                                    </div>
-                                                    <div class="col-md-12">
                                                         <label for="nc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
                                                         <input type="text" name="nc_lat" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
+                                                        <input type="text" name="nc_phak" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label for="nc_part" class="form-label">​ກົມ​ກອງ​ປະ​ຈຳ​ການ</label>
@@ -120,8 +120,8 @@
                                                 <th>​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
                                                 <th>​ອາ​ຍຸ</th>
                                                 <th>ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</th>
-                                                <th>ຕຳ​ແໜ່ງພັກ</th>
                                                 <th>​ຕຳ​ແໜ່ງ​ລັດ</th>
+                                                <th>ຕຳ​ແໜ່ງພັກ</th>
                                                 <th>ກົມ​ກອງ​​ປະ​ຈຳ​ການ</th>
                                                 <th>#</th>
                                             </tr>
@@ -134,8 +134,8 @@
                                                     <td class="text-start"><?= $row['nc_name']; ?></td>
                                                     <td><?= $row['nc_age']; ?></td>
                                                     <td><?= $row['nc_kammaban']; ?></td>
-                                                    <td><?= $row['nc_phak']; ?></td>
                                                     <td><?= $row['nc_lat']; ?></td>
+                                                    <td><?= $row['nc_phak']; ?></td>
                                                     <td><?= $row['nc_part']; ?></td>
                                                     <td>
                                                         <a href="#edit_<?= $row['nc_id']; ?>" type="button" class="btn btn-primary" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></a>
@@ -167,12 +167,12 @@
                                                                         <input type="text" name="nc_kammaban" value="<?= $row['nc_kammaban']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
-                                                                        <input type="text" name="nc_phak" value="<?= $row['nc_phak']; ?>" class="form-control" required>
-                                                                    </div>
-                                                                    <div class="col-md-12 mt-2">
                                                                         <label for="nc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
                                                                         <input type="text" name="nc_lat" value="<?= $row['nc_lat']; ?>" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
+                                                                        <input type="text" name="nc_phak" value="<?= $row['nc_phak']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
                                                                         <label for="nc_part" class="form-label">​ກົມ​ກອງ​​ປະ​ຈຳ​ການ</label>

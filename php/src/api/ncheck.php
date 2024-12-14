@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include "../config.php";
 
 $nchecks = array();
-foreach ($conn->query('SELECT count(nsc.m_id) / 30 as cm_id, m.m_username FROM nscore as nsc inner join member as m on nsc.m_id = m.m_id group by m.m_username order by cm_id desc') as $row) {
+foreach ($conn->query('SELECT count(nsc.m_id) / 5 as cm_id, m.m_username FROM nscore as nsc inner join member as m on nsc.m_id = m.m_id group by m.m_username order by cm_id desc') as $row) {
     $ncheck = array(
         
         'm_username' => $row['m_username'],
