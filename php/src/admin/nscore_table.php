@@ -88,7 +88,7 @@ $mid = $row10['mid'];
 
                 <?php if ($row1['scres']) { ?>
                     <th class="text-center fs-3 fw-bold"><?php $scres = $row1['scres'];
-                                                            $multi = $mid * 73;
+                                                            $multi = $mid * 74;
                                                             $tores = $multi - $scres;
                                                             ?> <?= $tores; ?></th>
                 <?php } else { ?>
