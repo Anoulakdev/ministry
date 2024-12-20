@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include "../config.php";
 
 $ochecks = array();
-foreach ($conn->query('SELECT count(osc.m_id) / 8 as cm_id, m.m_username FROM oscore as osc inner join member as m on osc.m_id = m.m_id group by m.m_username order by cm_id desc') as $row) {
+foreach ($conn->query('SELECT count(osc.m_id) / 10 as cm_id, m.m_username FROM oscore as osc inner join member as m on osc.m_id = m.m_id group by m.m_username order by cm_id desc') as $row) {
     $ocheck = array(
         
         'm_username' => $row['m_username'],
