@@ -25,6 +25,7 @@ if (isset($_POST['add'])) {
 	$row_cnt = $result->num_rows;
 
 	if ($row_cnt > 0) {
+		$result->close(); // ปิด result set
 
 		echo "<script>
 			$(document).ready(function() {
@@ -45,6 +46,7 @@ if (isset($_POST['add'])) {
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("ssss", $a_username, $a_password, $a_name, $a_status);
 		$stmt->execute();
+		$stmt->close(); // ปิด statement
 
 
 		echo "<script>
@@ -61,6 +63,7 @@ if (isset($_POST['add'])) {
 
 		header("refresh:3; url=admin");
 	}
+	$conn->close(); // ปิดการเชื่อมต่อฐานข้อมูล
 }
 if (isset($_GET['delete'])) {
 	$a_id = $_GET['delete'];
@@ -75,6 +78,9 @@ if (isset($_GET['delete'])) {
 
 		header("refresh:1; url=admin");
 	}
+
+	$stmt->close(); // ปิด statement
+	$conn->close(); // ปิดการเชื่อมต่อฐานข้อมูล
 }
 
 if (isset($_POST['update'])) {
@@ -101,5 +107,8 @@ if (isset($_POST['update'])) {
 			</script>";
 
 	header("refresh:3; url=admin");
+
+	$stmt->close();
+	$conn->close();
 }
 ob_end_flush();

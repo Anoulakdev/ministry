@@ -39,8 +39,6 @@
     <main id="main" class="main">
         <div class="container-fluid">
 
-
-
             <div class="pagetitle py-2">
                 <h1>ຜູ້​ສະ​ໝັກຊຸດ​ໃໝ່</h1>
 

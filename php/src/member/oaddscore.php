@@ -63,7 +63,10 @@
                                             window.location.href = 'naddscore';
                                         </script>";
 
-                                    <?php } else { ?>
+                                    <?php
+                                        $result->close(); // ปิด result set
+                                        $conn->close(); // ปิดการเชื่อมต่อ
+                                    } else { ?>
 
                                         <h4 class="my-4 lh-base"><i class="bi bi-asterisk"></i> ຄະນະບໍລິຫານງານຊຸດເກົ່າ ສືບຕໍ່ລົງສະໝັກ( ຖ້າເຫັນດີ ໃຫ້ຕິກ: ສືບຕໍ່; ຖ້າບໍ່ເຫັນດີ ໃຫ້ຕິກ: ບໍ່ສືບຕໍ່ ພ້ອມທັງເຫດຜົນ).</h4>
 
@@ -79,6 +82,9 @@
                                             while ($row = $result->fetch_assoc()) {
                                                 $data[] = $row;
                                             }
+                                            $stmt->close(); // ปิด statement
+                                            $result->close(); // ปิด result set
+                                            $conn->close(); // ปิดการเชื่อมต่อ
                                             ?>
 
                                             <div class="scrollable-table">

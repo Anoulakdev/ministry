@@ -16,5 +16,5 @@ foreach ($conn->query("SELECT m.m_username FROM nscore as ns inner join member a
     array_push($reasons, $reason);
 }
 echo json_encode($reasons);
-$conn = null;
+$conn->close();
 ?>

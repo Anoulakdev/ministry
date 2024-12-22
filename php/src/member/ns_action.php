@@ -25,6 +25,7 @@ if (isset($_POST['add'])) {
 			$stmt = $conn->prepare($insert_query);
 			$stmt->bind_param("si", $m_id, $nc_id);
 			$stmt->execute();
+			$stmt->close();
 		}
 
 		// Insert for unselected candidates with nsc_result = 1
@@ -54,5 +55,6 @@ if (isset($_POST['add'])) {
 
 		header("refresh:3; url=naddscore");
 	}
+	$conn->close();
 }
 ob_end_flush();

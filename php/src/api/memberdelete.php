@@ -15,5 +15,5 @@ foreach ($conn->query('SELECT DISTINCT m.m_id, m.m_username FROM oscore as oc in
     array_push($memberdeletes, $memberdelete);
 }
 echo json_encode($memberdeletes);
-$conn = null;
+$conn->close();
 ?>

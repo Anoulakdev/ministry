@@ -16,5 +16,5 @@ foreach ($conn->query("SELECT * FROM oscore WHERE oc_id = '$oc_id' AND osc_resul
     array_push($reasons, $reason);
 }
 echo json_encode($reasons);
-$conn = null;
+$conn->close();
 ?>

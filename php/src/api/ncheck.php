@@ -16,5 +16,5 @@ foreach ($conn->query('SELECT count(nsc.m_id) / 5 as cm_id, m.m_username FROM ns
     array_push($nchecks, $ncheck);
 }
 echo json_encode($nchecks);
-$conn = null;
+$conn->close();
 ?>

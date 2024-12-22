@@ -1,4 +1,4 @@
-<?php 
+<?php
 header("Access-Control-Allow-Origin: *");
 header("content-type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET");
@@ -16,5 +16,4 @@ foreach ($conn->query('SELECT * FROM member order by m_id asc') as $row) {
     array_push($members, $member);
 }
 echo json_encode($members);
-$conn = null;
-?>
+$conn->close();

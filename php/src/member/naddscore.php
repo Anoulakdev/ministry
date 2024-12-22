@@ -78,6 +78,9 @@
                                             while ($row = $result->fetch_assoc()) {
                                                 $data[] = $row;
                                             }
+                                            $stmt->close(); // ปิด statement
+                                            $result->close(); // ปิด result set
+                                            $conn->close(); // ปิดการเชื่อมต่อ
                                             ?>
 
                                             <div class="scrollable-table">
