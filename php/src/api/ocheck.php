@@ -9,7 +9,7 @@ include "../config.php";
 $ochecks = array();
 
 // Query ข้อมูลจากฐานข้อมูล
-$query = "SELECT count(osc.m_id) / 10 as cm_id, m.m_username 
+$query = "SELECT count(osc.m_id) / 11 as cm_id, m.m_username 
           FROM oscore as osc 
           INNER JOIN member as m ON osc.m_id = m.m_id 
           GROUP BY m.m_username 
