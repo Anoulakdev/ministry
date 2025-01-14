@@ -24,14 +24,13 @@ if (isset($_POST['add'])) {
 			$osc_result = $value; // Get the selected score (1 or 2)
 
 			$osc_reason_key = 'osc_reason_' . $oc_id;
-			$osc_reason = isset($_POST[$osc_reason_key]) ? $_POST[$osc_reason_key] : '';
+            $osc_reason = isset($_POST[$osc_reason_key]) ? $_POST[$osc_reason_key] : '';
 
 			// Insert or update the score in the database
 			$query = "INSERT INTO oscore (m_id, oc_id, osc_result, osc_reason) VALUES (?, ?, ?, ?)";
 			$stmt = $conn->prepare($query);
 			$stmt->bind_param("iiis", $m_id, $oc_id, $osc_result, $osc_reason);
 			$stmt->execute();
-			$stmt->close();
 		}
 	}
 
@@ -49,8 +48,6 @@ if (isset($_POST['add'])) {
 			</script>";
 
 	header("refresh:3; url=naddscore");
-
-	$conn->close();
 }
 
 ob_end_flush();

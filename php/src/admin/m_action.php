@@ -96,17 +96,12 @@ if (isset($_POST['update'])) {
 if (isset($_GET['deleteall'])) {
     $m_id = $_GET['deleteall'];
 
-    $query = "DELETE FROM oscore WHERE m_id=?";
+    $query = "DELETE FROM nscore WHERE m_id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $m_id);
     $stmt->execute();
 
-    $query1 = "DELETE FROM nscore WHERE m_id=?";
-    $stmt1 = $conn->prepare($query1);
-    $stmt1->bind_param("i", $m_id);
-    $stmt1->execute();
-
-    if ($stmt && $stmt1) {
+    if ($stmt) {
 
         header("refresh:1; url=memberdelete");
     }

@@ -61,7 +61,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="row g-3" action="oc_action" method="post">
+                                                <form class="row g-3" action="oc_action" method="post" enctype="multipart/form-data">
 
                                                     <div class="col-md-12">
                                                         <label for="oc_name" class="form-label">ຊື່ ແລະ ນາມ​ສະ​ກຸນ</label>
@@ -72,8 +72,8 @@
                                                         <input type="number" name="oc_age" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="oc_kammaban" class="form-label">​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</label>
-                                                        <input type="text" name="oc_kammaban" class="form-control" required>
+                                                        <label for="oc_saonoum" class="form-label">​ຕຳ​ແໜ່ງ​ຊາວ​ໜຸ່ມ</label>
+                                                        <input type="text" name="oc_saonoum" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label for="oc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
@@ -84,15 +84,23 @@
                                                         <input type="text" name="oc_phak" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="oc_part" class="form-label">​ກົມ​ກອງ​ປະ​ຈຳ​ການ</label>
+                                                        <label for="oc_part" class="form-label">​ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</label>
                                                         <input type="text" name="oc_part" class="form-control" required>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
-                                                        <button type="submit" name="add" class="btn btn-primary">ເພີ່ມ​ຂໍ້​ມູນ</button>
+                                                    <div class="col-md-12">
+                                                        <label for="oc_reason" class="form-label">​ໝາຍ​ເຫດ</label>
+                                                        <input type="text" name="oc_reason" class="form-control">
                                                     </div>
-                                                </form>
+                                                    <div class="col-md-12">
+                                                        <label for="oc_pic" class="form-label">ຮູບ​ພາບ</label>
+                                                        <input type="file" name="oc_pic" class="form-control">
+                                                    </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
+                                                <button type="submit" name="add" class="btn btn-primary">ເພີ່ມ​ຂໍ້​ມູນ</button>
+                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -116,14 +124,19 @@
                                     <table class="table" id="example">
                                         <thead class="table-light text-center align-middle">
                                             <tr>
-                                                <th>ລ/ດ</th>
-                                                <th>ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
-                                                <th>​ອາຍ​ຸ</th>
-                                                <th>​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</th>
-                                                <th>​ຕຳ​ແໜ່ງ​ລັດ</th>
-                                                <th>​ຕຳ​ແໜ່ງ​ພັກ</th>
-                                                <th>​ກົມ​ກອງ​ປະ​ຈຳ​ການ</th>
-                                                <th>#</th>
+                                                <th rowspan="2">ລ/ດ</th>
+                                                <th rowspan="2">ຮູບ​ພາບ</th>
+                                                <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
+                                                <th rowspan="2">​ອາ​ຍຸ</th>
+                                                <th colspan="3" class="text-center">ຕຳ​ແໜ່ງ</th>
+                                                <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
+                                                <th rowspan="2">ໝາຍ​ເຫດ</th>
+                                                <th rowspan="2">#</th>
+                                            </tr>
+                                            <tr>
+                                                <th>​ຊາ​ວ​ໜຸ່ມ</th>
+                                                <th>​ລັດ</th>
+                                                <th>ພັກ</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center align-middle">
@@ -131,12 +144,20 @@
                                             <?php foreach ($data as $row) { ?>
                                                 <tr>
                                                     <td><?= $i++; ?></td>
+                                                    <td>
+                                                        <?php if ($row['oc_pic'] != "") { ?>
+                                                            <img src="../uploads/candidate/<?= $row['oc_pic']; ?>" width="60" height="65" class="rounded-circle">
+                                                        <?php } else { ?>
+                                                            <img src="../assets/img/profile-picture.jpg" alt="Profile" width="60" height="65" class="rounded-circle">
+                                                        <?php } ?>
+                                                    </td>
                                                     <td class="text-start"><?= $row['oc_name']; ?></td>
                                                     <td><?= $row['oc_age']; ?></td>
-                                                    <td><?= $row['oc_kammaban']; ?></td>
+                                                    <td><?= $row['oc_saonoum']; ?></td>
                                                     <td><?= $row['oc_lat']; ?></td>
                                                     <td><?= $row['oc_phak']; ?></td>
                                                     <td><?= $row['oc_part']; ?></td>
+                                                    <td><?= $row['oc_reason']; ?></td>
                                                     <td>
                                                         <a href="#edit_<?= $row['oc_id']; ?>" type="button" class="btn btn-primary" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></a>
                                                         <a data-id="<?= $row['oc_id']; ?>" href="oc_action?delete=<?= $row['oc_id']; ?>" type="button" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></a>
@@ -151,11 +172,11 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form class="row g-3" action="oc_action" method="post">
+                                                                <form class="row g-3" action="oc_action" method="post" enctype="multipart/form-data">
                                                                     <input type="hidden" name="oc_id" value="<?= $row['oc_id']; ?>">
 
                                                                     <div class="col-md-12">
-                                                                        <label for="oc_name" class="form-label">ຊື່ ແລະ ນາມ​ສະ​ກຸນ</label>
+                                                                        <label for="oc_name" class="form-label">ຊື່ຜູ້​ສະ​ໝັກ</label>
                                                                         <input type="text" name="oc_name" value="<?= $row['oc_name']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
@@ -163,8 +184,8 @@
                                                                         <input type="text" name="oc_age" value="<?= $row['oc_age']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="oc_kammaban" class="form-label">​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</label>
-                                                                        <input type="text" name="oc_kammaban" value="<?= $row['oc_kammaban']; ?>" class="form-control" required>
+                                                                        <label for="oc_saonoum" class="form-label">​ຕຳ​ແໜ່ງ​ຊາວ​ໜຸ່ມ</label>
+                                                                        <input type="text" name="oc_saonoum" value="<?= $row['oc_saonoum']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
                                                                         <label for="oc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
@@ -175,15 +196,30 @@
                                                                         <input type="text" name="oc_phak" value="<?= $row['oc_phak']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="oc_part" class="form-label">​ກົມ​ກອງ​​ປະ​ຈຳ​ການ</label>
+                                                                        <label for="oc_part" class="form-label">​ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</label>
                                                                         <input type="text" name="oc_part" value="<?= $row['oc_part']; ?>" class="form-control" required>
                                                                     </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
-                                                                        <button type="submit" name="update" class="btn btn-success">ອັບ​ເດດ​ຂໍ້​ມູນ</button>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="oc_reason" class="form-label">ໝາຍ​ເຫດ</label>
+                                                                        <input type="text" name="oc_reason" value="<?= $row['oc_reason']; ?>" class="form-control">
                                                                     </div>
-                                                                </form>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="oc_pic" class="form-label">ຮູບ​ພາບ</label>
+                                                                        <input type="hidden" name="oldpic" value="<?= $row['oc_pic']; ?>">
+                                                                        <input type="file" name="oc_pic" class="form-control mb-2">
+                                                                        <?php if ($row['oc_pic'] != "") { ?>
+                                                                            <img src="../uploads/candidate/<?= $row['oc_pic']; ?>" width="120" class="rounded-circle">
+                                                                        <?php } else { ?>
+                                                                            <img src="../assets/img/profile-picture.jpg" alt="Profile" width="120" class="rounded-circle">
+                                                                        <?php } ?>
+
+                                                                    </div>
                                                             </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
+                                                                <button type="submit" name="update" class="btn btn-success">ອັບ​ເດດ​ຂໍ້​ມູນ</button>
+                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

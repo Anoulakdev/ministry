@@ -17,17 +17,17 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="oldcandidate">
                 <i class="bi bi-person"></i>
                 <span>ຜູ້​ສະ​ໝັກຊຸດ​ເກົ່າ</span>
             </a>
-        </li>
+        </li> -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="newcandidate">
                 <i class="bi bi-person"></i>
-                <span>ຜູ້​ສະ​ໝັກຊຸດ​ໃໝ່</span>
+                <span>ຜູ້​ສະ​ໝັກ</span>
             </a>
         </li>
 
@@ -59,31 +59,24 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="reason">
                 <i class="bi bi-receipt"></i>
                 <span>ຄຳ​ເຫັນ​ຕໍ່​ຄະ​ນະ​ຊຸດ​ເກົ່າ</span>
             </a>
-        </li>
+        </li> -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="ncheckscore">
-                <i class="bi bi-receipt"></i>
-                <span>ລາຍ​ລະ​ອຽດ​ລົງ​ຄະ​ແນນ​ຊຸດ​ໃໝ່</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="oscore">
                 <i class="bi bi-sliders"></i>
                 <span>​ຜົນ​ຄະ​ແນນ​ຊຸດ​ເກົ່າ</span>
             </a>
-        </li>
+        </li> -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="nscore">
                 <i class="bi bi-sliders"></i>
-                <span>​ຜົນ​ຄະ​ແນນຊຸດ​ໃໝ່</span>
+                <span>​ຜົນ​ຄະ​ແນນ</span>
             </a>
         </li>
 

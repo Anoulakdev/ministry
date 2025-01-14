@@ -15,11 +15,13 @@ if (isset($_POST['m_username'])) {
 
   $sql = "SELECT * FROM member 
 
-                  WHERE  m_username='" . $m_username . "' 
+  WHERE  m_username='" . $m_username . "' 
 
-                  AND  m_password='" . $m_password . "' ";
+  AND  m_password='" . $m_password . "' ";
 
-  $result = $conn->query($sql);
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
 
 
@@ -40,7 +42,7 @@ if (isset($_POST['m_username'])) {
 
     if ($_SESSION["m_status"] == "1") {
 
-      Header("Location: oaddscore");
+      Header("Location: naddscore");
     }
   } else {
 

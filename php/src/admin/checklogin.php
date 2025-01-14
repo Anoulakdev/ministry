@@ -16,11 +16,13 @@ if (isset($_POST['a_username'])) {
 
   $sql = "SELECT * FROM admin 
 
-                  WHERE  a_username='" . $a_username . "' 
+  WHERE  a_username='" . $a_username . "' 
 
-                  AND  a_password='" . $a_password . "' ";
+  AND  a_password='" . $a_password . "' ";
 
-  $result = $conn->query($sql);
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
 
 

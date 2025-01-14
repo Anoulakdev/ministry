@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ລົງ​ຄະ​ແນນຊຸດ​ໃໝ່</title>
+    <title>ລົງ​ຄະ​ແນນ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -22,6 +22,10 @@
         .scrollable-table table {
             width: 100%;
             white-space: nowrap;
+        }
+
+        .custom-checkbox {
+            border: 1px solid black;
         }
     </style>
 
@@ -38,7 +42,7 @@
 
 
             <div class="pagetitle py-2">
-                <h1>ລົງ​ຄະ​ແນນຊຸດ​ໃໝ່</h1>
+                <h1>ລົງ​ຄະ​ແນນ</h1>
             </div><!-- End Page Title -->
 
             <section class="section dashboard">
@@ -64,7 +68,7 @@
 
                                     <?php } else { ?>
 
-                                        <h4 class="my-4 lh-base"><i class="bi bi-asterisk"></i> ບັນດາຄະນະໜ່ວຍກໍາມະບານຮາກຖານ ລົງສະໝັກຊຸດໃໝ່ ( ໃຫ້ຕິກເອົາ 5 ສະຫາຍ ທີ່ທ່ານເລືອກເອົາ).</h4>
+                                        <h4 class="my-4"><i class="bi bi-asterisk"></i> ຕິກອອກ 05 ສະຫາຍ ທີ່ທ່ານບໍ່ເຫັນດີ.</h4>
 
                                         <form class="row g-3" action="ns_action" method="post">
                                             <input type="hidden" name="m_id" value="<?= $_SESSION['m_id']; ?>">
@@ -78,9 +82,6 @@
                                             while ($row = $result->fetch_assoc()) {
                                                 $data[] = $row;
                                             }
-                                            $stmt->close(); // ปิด statement
-                                            $result->close(); // ปิด result set
-                                            $conn->close(); // ปิดการเชื่อมต่อ
                                             ?>
 
                                             <div class="scrollable-table">
@@ -88,26 +89,35 @@
                                                     <thead class="table-light text-center align-middle">
                                                         <tr>
                                                             <th>ລ/ດ</th>
-                                                            <th>ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
-                                                            <th>​ອາຍ​ຸ</th>
-                                                            <th>​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</th>
-                                                            <th>​ຕຳ​ແໜ່ງ​ພັກ</th>
-                                                            <th>​ຕຳ​ແໜ່ງ​ລັດ</th>
-                                                            <th>​ກົມ​ກອງ​ປະ​ຈຳ​ການ</th>
+                                                            <th>ຮູບ​ພາບ</th>
+                                                            <th>​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
+                                                            <th>​ອາ​ຍຸ</th>
+                                                            <th>ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</th>
+                                                            <th>ຕຳ​ແໜ່ງລັດ</th>
+                                                            <th>ຕຳ​ແໜ່ງພັກ</th>
+                                                            <th>ກົມ​ກອງ​​ປະ​ຈຳ​ການ</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="text-center align-middle">
                                                         <?php $i = 1; ?>
                                                         <?php foreach ($data as $row) { ?>
                                                             <tr>
-                                                                <td><?= $i++; ?>. <input class="form-check-input" type="checkbox" name="nc_id[]" value="<?= $row['nc_id']; ?>"></td>
+                                                                <td><?= $i++; ?>. <input class="form-check-input custom-checkbox" type="checkbox" name="nc_id[]" value="<?= $row['nc_id']; ?>"></td>
+                                                                <td>
+                                                                    <?php if ($row['nc_pic'] != "") { ?>
+                                                                        <img src="../uploads/candidate/<?= $row['nc_pic']; ?>" width="60" height="65" class="rounded-circle">
+                                                                    <?php } else { ?>
+                                                                        <img src="../assets/img/profile-picture.jpg" alt="Profile" width="60" height="65" class="rounded-circle">
+                                                                    <?php } ?>
+                                                                </td>
                                                                 <td class="text-start"><?= $row['nc_name']; ?></td>
                                                                 <td><?= $row['nc_age']; ?></td>
                                                                 <td><?= $row['nc_kammaban']; ?></td>
-                                                                <td><?= $row['nc_phak']; ?></td>
                                                                 <td><?= $row['nc_lat']; ?></td>
+                                                                <td><?= $row['nc_phak']; ?></td>
                                                                 <td><?= $row['nc_part']; ?></td>
                                                             </tr>
+
                                                         <?php } ?>
                                                     </tbody>
                                                 </table>
@@ -148,6 +158,8 @@
         var submitButton = document.getElementById('add');
         var loadingButton = document.getElementById('load');
         var limit = 5;
+
+        // Checkbox logic to enable/disable the submit button based on selection
         for (var i = 0; i < checkboxs.length; i++) {
             checkboxs[i].onclick = function() {
                 var checkedCount = document.querySelectorAll('input[name="nc_id[]"]:checked').length;
@@ -155,14 +167,14 @@
                     for (var j = 0; j < checkboxs.length; j++) {
                         if (!checkboxs[j].checked) {
                             checkboxs[j].disabled = true;
-                            submitButton.disabled = false;
                         }
                     }
+                    submitButton.disabled = false;
                 } else {
                     for (var j = 0; j < checkboxs.length; j++) {
                         checkboxs[j].disabled = false;
-                        submitButton.disabled = true;
                     }
+                    submitButton.disabled = true;
                 }
             }
         }

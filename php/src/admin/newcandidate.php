@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ຜູ້​ສະ​ໝັກຊຸດ​ໃໝ່</title>
+    <title>ຜູ້​ສະ​ໝັກ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -39,8 +39,10 @@
     <main id="main" class="main">
         <div class="container-fluid">
 
+
+
             <div class="pagetitle py-2">
-                <h1>ຜູ້​ສະ​ໝັກຊຸດ​ໃໝ່</h1>
+                <h1>ຜູ້​ສະ​ໝັກ</h1>
 
             </div><!-- End Page Title -->
 
@@ -59,7 +61,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="row g-3" action="nc_action" method="post">
+                                                <form class="row g-3" action="nc_action" method="post" enctype="multipart/form-data">
 
                                                     <div class="col-md-12">
                                                         <label for="nc_name" class="form-label">ຊື່ ແລະ ນາມ​ສະ​ກຸນ</label>
@@ -70,7 +72,7 @@
                                                         <input type="number" name="nc_age" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="nc_kammaban" class="form-label">​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</label>
+                                                        <label for="nc_kammaban" class="form-label">ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</label>
                                                         <input type="text" name="nc_kammaban" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
@@ -82,15 +84,19 @@
                                                         <input type="text" name="nc_phak" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="nc_part" class="form-label">​ກົມ​ກອງ​ປະ​ຈຳ​ການ</label>
+                                                        <label for="nc_part" class="form-label">​ກົມ​ກອງ​​ປະ​ຈຳ​ການ</label>
                                                         <input type="text" name="nc_part" class="form-control" required>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
-                                                        <button type="submit" name="add" class="btn btn-primary">ເພີ່ມ​ຂໍ້​ມູນ</button>
+                                                    <div class="col-md-12">
+                                                        <label for="nc_pic" class="form-label">ຮູບ​ພາບ</label>
+                                                        <input type="file" name="nc_pic" class="form-control">
                                                     </div>
-                                                </form>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
+                                                <button type="submit" name="add" class="btn btn-primary">ເພີ່ມ​ຂໍ້​ມູນ</button>
+                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -115,20 +121,29 @@
                                         <thead class="table-light text-center align-middle">
                                             <tr>
                                                 <th>ລ/ດ</th>
+                                                <th>ຮູບ​ພາບ</th>
                                                 <th>​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
                                                 <th>​ອາ​ຍຸ</th>
                                                 <th>ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</th>
-                                                <th>​ຕຳ​ແໜ່ງ​ລັດ</th>
+                                                <th>ຕຳ​ແໜ່ງລັດ</th>
                                                 <th>ຕຳ​ແໜ່ງພັກ</th>
                                                 <th>ກົມ​ກອງ​​ປະ​ຈຳ​ການ</th>
                                                 <th>#</th>
                                             </tr>
+
                                         </thead>
                                         <tbody class="text-center align-middle">
                                             <?php $i = 1; ?>
                                             <?php foreach ($data as $row) { ?>
                                                 <tr>
                                                     <td><?= $i++; ?></td>
+                                                    <td>
+                                                        <?php if ($row['nc_pic'] != "") { ?>
+                                                            <img src="../uploads/candidate/<?= $row['nc_pic']; ?>" width="60" height="65" class="rounded-circle">
+                                                        <?php } else { ?>
+                                                            <img src="../assets/img/profile-picture.jpg" alt="Profile" width="60" height="65" class="rounded-circle">
+                                                        <?php } ?>
+                                                    </td>
                                                     <td class="text-start"><?= $row['nc_name']; ?></td>
                                                     <td><?= $row['nc_age']; ?></td>
                                                     <td><?= $row['nc_kammaban']; ?></td>
@@ -149,7 +164,7 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form class="row g-3" action="nc_action" method="post">
+                                                                <form class="row g-3" action="nc_action" method="post" enctype="multipart/form-data">
                                                                     <input type="hidden" name="nc_id" value="<?= $row['nc_id']; ?>">
 
                                                                     <div class="col-md-12">
@@ -161,7 +176,7 @@
                                                                         <input type="text" name="nc_age" value="<?= $row['nc_age']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="nc_kammaban" class="form-label">​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</label>
+                                                                        <label for="nc_kammaban" class="form-label">ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</label>
                                                                         <input type="text" name="nc_kammaban" value="<?= $row['nc_kammaban']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
@@ -176,8 +191,17 @@
                                                                         <label for="nc_part" class="form-label">​ກົມ​ກອງ​​ປະ​ຈຳ​ການ</label>
                                                                         <input type="text" name="nc_part" value="<?= $row['nc_part']; ?>" class="form-control" required>
                                                                     </div>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="nc_pic" class="form-label">ຮູບ​ພາບ</label>
+                                                                        <input type="hidden" name="oldpic" value="<?= $row['nc_pic']; ?>">
+                                                                        <input type="file" name="nc_pic" class="form-control mb-2">
+                                                                        <?php if ($row['nc_pic'] != "") { ?>
+                                                                            <img src="../uploads/candidate/<?= $row['nc_pic']; ?>" width="120" class="rounded-circle">
+                                                                        <?php } else { ?>
+                                                                            <img src="../assets/img/profile-picture.jpg" alt="Profile" width="120" class="rounded-circle">
+                                                                        <?php } ?>
 
-
+                                                                    </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
                                                                         <button type="submit" name="update" class="btn btn-success">ອັບ​ເດດ​ຂໍ້​ມູນ</button>

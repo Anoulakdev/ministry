@@ -59,18 +59,15 @@
 
                                     if ($row_cnt > 0) { ?>
 
-                                        <script>
-                                            window.location.href = 'naddscore';
-                                        </script>";
+                                        <h1 class="my-5 text-success">ທ່ານ​ໄດ້​ລົງ​ຄະ​ແນນ​ສ​ຳ​ເລັ​ດ​ແລ້ວ</h1>
 
-                                    <?php
-                                        $result->close(); // ปิด result set
-                                        $conn->close(); // ปิดการเชื่อมต่อ
-                                    } else { ?>
+                                        <a href="naddscore" type="button" class="btn btn-primary">ຕໍ່​ໄປ</a>
 
-                                        <h4 class="my-4 lh-base"><i class="bi bi-asterisk"></i> ຄະນະບໍລິຫານງານຊຸດເກົ່າ ສືບຕໍ່ລົງສະໝັກ( ຖ້າເຫັນດີ ໃຫ້ຕິກ: ສືບຕໍ່; ຖ້າບໍ່ເຫັນດີ ໃຫ້ຕິກ: ບໍ່ສືບຕໍ່ ພ້ອມທັງເຫດຜົນ).</h4>
+                                    <?php } else { ?>
 
-                                        <form class="row g-3" action="os_action" method="post" onsubmit="return handleSubmit()">
+                                        <h4 class="my-4"><i class="bi bi-asterisk"></i> ຈົ່ງເລືອກ​ເອົາຫ້ອງ​ສຶບ​ຕໍ່ ແລະ ບໍ່​ສືບ​ຕໍ່</h4>
+
+                                        <form class="row g-3" action="os_action" method="post">
                                             <input type="hidden" name="m_id" value="<?= $_SESSION['m_id']; ?>">
 
                                             <?php
@@ -82,23 +79,25 @@
                                             while ($row = $result->fetch_assoc()) {
                                                 $data[] = $row;
                                             }
-                                            $stmt->close(); // ปิด statement
-                                            $result->close(); // ปิด result set
-                                            $conn->close(); // ปิดการเชื่อมต่อ
                                             ?>
 
                                             <div class="scrollable-table">
                                                 <table class="table" id="example">
                                                     <thead class="table-light text-center align-middle">
                                                         <tr>
-                                                            <th>ເລືອກ</th>
-                                                            <th>ໝາຍ​ເຫດ</th>
-                                                            <th>ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
-                                                            <th>​ອາຍ​ຸ</th>
-                                                            <th>​ຕຳ​ແໜ່ງ​ກຳ​ມະ​ບານ</th>
-                                                            <th>​ຕຳ​ແໜ່ງ​ພັກ</th>
-                                                            <th>​ຕຳ​ແໜ່ງ​ລັດ</th>
-                                                            <th>​ກົມ​ກອງ​ປະ​ຈຳ​ການ</th>
+                                                            <th rowspan="2">ຄະ​ແນນ</th>
+                                                            <th rowspan="2">ໝາຍ​ເຫດ</th>
+                                                            <th rowspan="2">ຮູບ​ພາບ</th>
+                                                            <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
+                                                            <th rowspan="2">​ອາ​ຍຸ</th>
+                                                            <th colspan="3" class="text-center">ຕຳ​ແໜ່ງ</th>
+                                                            <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>​ຊາ​ວ​ໜຸ່ມ</th>
+                                                            <th>​ລັດ</th>
+                                                            <th>ພັກ</th>
+
                                                         </tr>
                                                     </thead>
                                                     <tbody class="text-center align-middle">
@@ -118,13 +117,21 @@
                                                                 <td>
                                                                     <textarea name="osc_reason_<?= $row['oc_id']; ?>" rows="3" class="form-control" style="width: 200px;" id="osc_reason_<?= $row['oc_id']; ?>" disabled></textarea>
                                                                 </td>
+                                                                <td>
+                                                                    <?php if ($row['oc_pic'] != "") { ?>
+                                                                        <img src="../uploads/candidate/<?= $row['oc_pic']; ?>" width="60" height="65" class="rounded-circle">
+                                                                    <?php } else { ?>
+                                                                        <img src="../assets/img/profile-picture.jpg" alt="Profile" width="60" height="65" class="rounded-circle">
+                                                                    <?php } ?>
+                                                                </td>
                                                                 <td class="text-start"><?= $row['oc_name']; ?></td>
                                                                 <td><?= $row['oc_age']; ?></td>
-                                                                <td><?= $row['oc_kammaban']; ?></td>
-                                                                <td><?= $row['oc_phak']; ?></td>
+                                                                <td><?= $row['oc_saonoum']; ?></td>
                                                                 <td><?= $row['oc_lat']; ?></td>
+                                                                <td><?= $row['oc_phak']; ?></td>
                                                                 <td><?= $row['oc_part']; ?></td>
                                                             </tr>
+
                                                         <?php } ?>
                                                     </tbody>
                                                 </table>
@@ -176,10 +183,9 @@
 
         document.getElementById("load").style.display = "none"
 
-        function handleSubmit() {
-            document.getElementById('add').style.display = 'none';
-            document.getElementById('load').style.display = 'inline-block';
-            return true;
+        function loads() {
+            document.getElementById("add").style.display = "none"
+            document.getElementById("load").style.display = "inline"
         }
     </script>
 

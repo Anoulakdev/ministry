@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include "../config.php";
 
 $memberdeletes = array();
-foreach ($conn->query('SELECT DISTINCT m.m_id, m.m_username FROM oscore as oc inner join member as m on oc.m_id = m.m_id') as $row) {
+foreach ($conn->query('SELECT DISTINCT m.m_id, m.m_username FROM nscore as nc inner join member as m on nc.m_id = m.m_id') as $row) {
     $memberdelete = array(
         'm_id' => $row['m_id'],
         'm_username' => $row['m_username'],
@@ -15,5 +15,5 @@ foreach ($conn->query('SELECT DISTINCT m.m_id, m.m_username FROM oscore as oc in
     array_push($memberdeletes, $memberdelete);
 }
 echo json_encode($memberdeletes);
-$conn->close();
+$conn = null;
 ?>
