@@ -2,7 +2,7 @@
 	$DBHOST = 'db';
 	$DBUSER = 'root';
 	$DBPASS = 'xayasone';
-	$DBNAME = 'ministry';
+	$DBNAME = 'example';
 
 	$conn = new mysqli($DBHOST,$DBUSER,$DBPASS,$DBNAME);
 	mysqli_set_charset($conn, "utf8");

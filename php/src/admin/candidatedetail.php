@@ -1,6 +1,10 @@
 <?php
-include 'm_action.php';
+session_start();
+ob_start();
+include '../config.php';
+include 'status.php';
 include '../apiurl.php';
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +14,7 @@ include '../apiurl.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​</title>
+    <title>ລາຍ​ລະ​ອຽດ​ຜູ້​ສະ​ໝັກ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -38,7 +42,6 @@ include '../apiurl.php';
     </style>
 
 
-
 </head>
 
 <body>
@@ -49,37 +52,64 @@ include '../apiurl.php';
     <!-- ======= Sidebar ======= -->
     <?php include '../sidebar/sidebar_a.php'; ?>
 
+    <?php
+    if (isset($_GET['nc_id'])) {
+        $nc_id = $_GET['nc_id'];
+    } else {
+        $nc_id = "";
+    }
+    ?>
+
     <div id="preloader"></div>
     <main id="main" class="main">
-        <div class="container">
+
+        <div class="pagetitle py-2">
+            <h1>ລາຍ​ລະ​ອຽດ​ຜູ້​ສະ​ໝັກ</h1>
+
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-start">
+                                <form action="" method="GET" class="my-3 d-flex align-items-center">
+                                    <select name="nc_id" class="form-select me-3">
+                                        <option value="">---ເລືອກຜູ້​ສະ​ໝັກ---</option>
+                                        <?php
+                                        $query3 = 'SELECT * FROM newcandidate ORDER BY nc_id ASC';
+                                        $stmt3 = $conn->prepare($query3);
+                                        $stmt3->execute();
+                                        $result3 = $stmt3->get_result();
+
+                                        while ($row3 = $result3->fetch_assoc()) {
+                                            $selected = ($nc_id == $row3['nc_id']) ? "selected" : "";
+                                            echo "<option value='" . htmlspecialchars($row3['nc_id']) . "' $selected>" . htmlspecialchars($row3['nc_name']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                    <button class="btn btn-primary" type="submit" name="filter">ຄົ້ນຫາ</button>
+                                </form>
+                            </div>
 
 
+                            <hr />
 
-            <div class="pagetitle py-2">
-                <h1>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​</h1>
-
-            </div><!-- End Page Title -->
-
-            <section class="section">
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <div class="card">
-                            <div class="card-body">
-
-                                <div class="my-3">
-
-                                </div>
-
+                            <?php if (isset($_GET['filter'])) { ?>
                                 <!-- Default Table -->
                                 <div class="scrollable-table">
                                     <table class="table" id="example">
-                                        <thead>
+                                        <thead class="table-light text-center align-middle">
                                             <tr>
                                                 <th>ລ/ດ</th>
-                                                <th>ເລກໃບ​ບິນ</th>
-                                                <th>ສະ​ເລ່ຍ</th>
+                                                <th>ກຳ​ມະ​ການ</th>
+                                                <th>​ໃບ​ລົງ​ຄະ​ແນນ</th>
                                             </tr>
+
+
                                         </thead>
                                         <tbody>
                                             <?php
@@ -87,7 +117,7 @@ include '../apiurl.php';
                                             $curl = curl_init();
 
                                             curl_setopt_array($curl, array(
-                                                CURLOPT_URL => $apincheck,
+                                                CURLOPT_URL => $apicandidatesearch . '?nc_id=' . $nc_id,
                                                 CURLOPT_RETURNTRANSFER => true,
                                                 CURLOPT_ENCODING => '',
                                                 CURLOPT_MAXREDIRS => 10,
@@ -104,25 +134,23 @@ include '../apiurl.php';
 
                                             <?php $ni = 1; ?>
                                             <?php for ($i = 0; $i < count($obj); $i++) { ?>
-                                                <tr>
+                                                <tr class="text-center">
                                                     <td><?= $ni++; ?></td>
+                                                    <td><?= $obj[$i]->m_username; ?></td>
                                                     <td><?= $obj[$i]->s_no; ?></td>
-                                                    <td>
-                                                        <?= $obj[$i]->sno; ?>
-                                                    </td>
                                                 </tr>
-
                                             <?php } ?>
                                         </tbody>
+
                                     </table>
                                 </div>
-                                <!-- End Default Table Example -->
-                            </div>
+                            <?php } ?>
+                            <!-- End Default Table Example -->
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
     </main><!-- End #main -->
 

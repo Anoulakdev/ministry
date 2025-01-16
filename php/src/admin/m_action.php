@@ -14,44 +14,49 @@ $m_status = "";
 
 
 if (isset($_POST['add'])) {
-
-    $sql1 = "SELECT max(m_id) as mid FROM member";
-    $result1 = $conn->query($sql1);
-    $row1 = $result1->fetch_assoc();
-    $mid = $row1['mid'];
-
-    $count = 100001;
-    if ($row1['mid'] == "NULL") {
-        $username = $count;
-    } else {
-        $username = $mid + $count;
-    }
-
-    $randomno = rand(1000000, 10000000);
-
-    $m_username = $username;
-    $m_password = $randomno;
+    $m_username = $_POST['m_username'];
+    $m_password = $_POST['m_password'];
     $m_status = 1;
 
+    $result = $conn->query("SELECT * FROM member WHERE m_username = '$m_username'");
+    $row_cnt = $result->num_rows;
 
-    $query = "INSERT INTO member(m_username,m_password,m_status)VALUES(?,?,?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("sss", $m_username, $m_password, $m_status);
-    $stmt->execute();
+    if ($row_cnt > 0) {
 
-    echo "<script>
+        echo "<script>
+			$(document).ready(function() {
+			Swal.fire({
+			position: 'center',
+			icon: 'info',
+			title: 'ຊື່ມີຢູ່ໃນລະບົບແລ້ວ',
+			showConfirmButton: false,
+			timer: 3000
+		  });
+		});
+			</script>";
+
+        header("refresh:3; url=member");
+    } else {
+
+        $query = "INSERT INTO member(m_username,m_password,m_status)VALUES(?,?,?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("sss", $m_username, $m_password, $m_status);
+        $stmt->execute();
+
+        echo "<script>
 			$(document).ready(function() {
 				Swal.fire({
 					position: 'center',
 					icon: 'success',
 					title: 'ເພີ່ມຂໍ້​ມູນເຂົ້າລະບົບສຳເລັດແລ້ວ',
 					showConfirmButton: false,
-					timer: 1000
+					timer: 3000
 				  });
 			});
 		</script>";
 
-    header("refresh:1; url=member");
+        header("refresh:3; url=member");
+    }
 }
 
 if (isset($_GET['delete'])) {
@@ -70,11 +75,12 @@ if (isset($_GET['delete'])) {
 
 if (isset($_POST['update'])) {
     $m_id = $_POST['m_id'];
+    $m_username = $_POST['m_username'];
     $m_password = $_POST['m_password'];
 
-    $query = "UPDATE member SET m_password=? WHERE m_id=?";
+    $query = "UPDATE member SET m_username=?, m_password=? WHERE m_id=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("si", $m_password, $m_id);
+    $stmt->bind_param("ssi", $m_username, $m_password, $m_id);
     $stmt->execute();
 
     echo "<script>

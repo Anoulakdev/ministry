@@ -72,20 +72,24 @@
                                                         <input type="number" name="nc_age" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="nc_kammaban" class="form-label">ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</label>
-                                                        <input type="text" name="nc_kammaban" class="form-control" required>
+                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
+                                                        <input type="text" name="nc_phak" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label for="nc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
                                                         <input type="text" name="nc_lat" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
-                                                        <input type="text" name="nc_phak" class="form-control" required>
+                                                        <label for="nc_women" class="form-label">​ຕຳ​ແໜ່ງ ສຍ​</label>
+                                                        <input type="text" name="nc_women" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="nc_part" class="form-label">​ກົມ​ກອງ​​ປະ​ຈຳ​ການ</label>
+                                                        <label for="nc_part" class="form-label">​ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</label>
                                                         <input type="text" name="nc_part" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="nc_reason" class="form-label">​ໝາຍ​ເຫດ</label>
+                                                        <input type="text" name="nc_reason" class="form-control">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label for="nc_pic" class="form-label">ຮູບ​ພາບ</label>
@@ -120,17 +124,21 @@
                                     <table class="table" id="example">
                                         <thead class="table-light text-center align-middle">
                                             <tr>
-                                                <th>ລ/ດ</th>
-                                                <th>ຮູບ​ພາບ</th>
-                                                <th>​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
-                                                <th>​ອາ​ຍຸ</th>
-                                                <th>ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</th>
-                                                <th>ຕຳ​ແໜ່ງລັດ</th>
-                                                <th>ຕຳ​ແໜ່ງພັກ</th>
-                                                <th>ກົມ​ກອງ​​ປະ​ຈຳ​ການ</th>
-                                                <th>#</th>
+                                                <th rowspan="2">ລ/ດ</th>
+                                                <th rowspan="2">ຮູບ​ພາບ</th>
+                                                <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
+                                                <th rowspan="2">ຊົນ​ເຜົ່າ</th>
+                                                <th rowspan="2">​ອາ​ຍຸ</th>
+                                                <th colspan="3" class="text-center">ຕຳ​ແໜ່ງ</th>
+                                                <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
+                                                <th rowspan="2">ລະ​ດັບ​ວິ​ຊາ​ສະ​ເພາະ</th>
+                                                <th rowspan="2">#</th>
                                             </tr>
-
+                                            <tr>
+                                                <th>ແມ່​ຍິງ</th>
+                                                <th>​ລັດ</th>
+                                                <th>ພັກ</th>
+                                            </tr>
                                         </thead>
                                         <tbody class="text-center align-middle">
                                             <?php $i = 1; ?>
@@ -145,11 +153,13 @@
                                                         <?php } ?>
                                                     </td>
                                                     <td class="text-start"><?= $row['nc_name']; ?></td>
+                                                    <td><?= $row['tribe']; ?></td>
                                                     <td><?= $row['nc_age']; ?></td>
-                                                    <td><?= $row['nc_kammaban']; ?></td>
+                                                    <td><?= $row['nc_women']; ?></td>
                                                     <td><?= $row['nc_lat']; ?></td>
                                                     <td><?= $row['nc_phak']; ?></td>
                                                     <td><?= $row['nc_part']; ?></td>
+                                                    <td><?= $row['nc_reason']; ?></td>
                                                     <td>
                                                         <a href="#edit_<?= $row['nc_id']; ?>" type="button" class="btn btn-primary" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></a>
                                                         <a data-id="<?= $row['nc_id']; ?>" href="nc_action?delete=<?= $row['nc_id']; ?>" type="button" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></a>
@@ -168,7 +178,7 @@
                                                                     <input type="hidden" name="nc_id" value="<?= $row['nc_id']; ?>">
 
                                                                     <div class="col-md-12">
-                                                                        <label for="nc_name" class="form-label">ຊື່ ແລະ ນາມ​ສະ​ກຸນ</label>
+                                                                        <label for="nc_name" class="form-label">ຊື່ຜູ້​ສະ​ໝັກ</label>
                                                                         <input type="text" name="nc_name" value="<?= $row['nc_name']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
@@ -176,20 +186,24 @@
                                                                         <input type="text" name="nc_age" value="<?= $row['nc_age']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="nc_kammaban" class="form-label">ຕຳ​ແໜ່ງກຳ​ມະ​ບານ</label>
-                                                                        <input type="text" name="nc_kammaban" value="<?= $row['nc_kammaban']; ?>" class="form-control" required>
+                                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
+                                                                        <input type="text" name="nc_phak" value="<?= $row['nc_phak']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
                                                                         <label for="nc_lat" class="form-label">​ຕຳ​ແໜ່ງ​ລັດ</label>
                                                                         <input type="text" name="nc_lat" value="<?= $row['nc_lat']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="nc_phak" class="form-label">​ຕຳ​ແໜ່ງ​ພັກ</label>
-                                                                        <input type="text" name="nc_phak" value="<?= $row['nc_phak']; ?>" class="form-control" required>
+                                                                        <label for="nc_women" class="form-label">​ຕຳ​ແໜ່ງ​ ສຍ</label>
+                                                                        <input type="text" name="nc_women" value="<?= $row['nc_women']; ?>" class="form-control" required>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
-                                                                        <label for="nc_part" class="form-label">​ກົມ​ກອງ​​ປະ​ຈຳ​ການ</label>
+                                                                        <label for="nc_part" class="form-label">​ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</label>
                                                                         <input type="text" name="nc_part" value="<?= $row['nc_part']; ?>" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="nc_reason" class="form-label">ໝາຍ​ເຫດ</label>
+                                                                        <input type="text" name="nc_reason" value="<?= $row['nc_reason']; ?>" class="form-control">
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
                                                                         <label for="nc_pic" class="form-label">ຮູບ​ພາບ</label>
@@ -202,12 +216,12 @@
                                                                         <?php } ?>
 
                                                                     </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
-                                                                        <button type="submit" name="update" class="btn btn-success">ອັບ​ເດດ​ຂໍ້​ມູນ</button>
-                                                                    </div>
-                                                                </form>
                                                             </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">​ປິດ</button>
+                                                                <button type="submit" name="update" class="btn btn-success">ອັບ​ເດດ​ຂໍ້​ມູນ</button>
+                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

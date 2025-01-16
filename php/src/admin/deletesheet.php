@@ -1,7 +1,4 @@
-<?php
-include 'm_action.php';
-include '../apiurl.php';
-?>
+<?php include 's_action.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +7,7 @@ include '../apiurl.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​</title>
+    <title>ລົ​ບ​ໃບ​ລົງ​ຄະ​​ແນນ​ຜິດ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -26,15 +23,6 @@ include '../apiurl.php';
             width: 100%;
             white-space: nowrap;
         }
-
-        #preloader {
-            background: #ffffff url(../assets/img/Rolling.gif) no-repeat center center;
-            background-size: 5%;
-            height: 100vh;
-            width: 100%;
-            position: fixed;
-            z-index: 100;
-        }
     </style>
 
 
@@ -49,14 +37,13 @@ include '../apiurl.php';
     <!-- ======= Sidebar ======= -->
     <?php include '../sidebar/sidebar_a.php'; ?>
 
-    <div id="preloader"></div>
     <main id="main" class="main">
         <div class="container">
 
 
 
             <div class="pagetitle py-2">
-                <h1>ກວດ​ກາ​ການ​ລົງ​ຄະ​ແນນ​</h1>
+                <h1>ລົ​ບ​ໃບ​ລົງ​ຄະ​​ແນນ​ຜິດ</h1>
 
             </div><!-- End Page Title -->
 
@@ -71,44 +58,38 @@ include '../apiurl.php';
 
                                 </div>
 
+
+                                <?php
+                                $query = "SELECT DISTINCT m.m_username, nsc.s_no FROM nscore as nsc inner join member as m on nsc.m_id = m.m_id";
+                                $stmt = $conn->prepare($query);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $data = array();
+                                while ($row = $result->fetch_assoc()) {
+                                    $data[] = $row;
+                                }
+                                ?>
                                 <!-- Default Table -->
                                 <div class="scrollable-table">
                                     <table class="table" id="example">
                                         <thead>
                                             <tr>
                                                 <th>ລ/ດ</th>
-                                                <th>ເລກໃບ​ບິນ</th>
-                                                <th>ສະ​ເລ່ຍ</th>
+                                                <th>ກຳ​ມະ​ການ</th>
+                                                <th>ເລກ​ທີໃບ​ລົງ​ຄະ​ແນນ</th>
+                                                <th>#</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-
-                                            $curl = curl_init();
-
-                                            curl_setopt_array($curl, array(
-                                                CURLOPT_URL => $apincheck,
-                                                CURLOPT_RETURNTRANSFER => true,
-                                                CURLOPT_ENCODING => '',
-                                                CURLOPT_MAXREDIRS => 10,
-                                                CURLOPT_TIMEOUT => 0,
-                                                CURLOPT_FOLLOWLOCATION => true,
-                                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                                CURLOPT_CUSTOMREQUEST => 'GET',
-                                            ));
-
-                                            $response = curl_exec($curl);
-                                            $obj = json_decode($response);
-                                            // echo $obj[0]->name;
-                                            ?>
-
-                                            <?php $ni = 1; ?>
-                                            <?php for ($i = 0; $i < count($obj); $i++) { ?>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($data as $row) { ?>
                                                 <tr>
-                                                    <td><?= $ni++; ?></td>
-                                                    <td><?= $obj[$i]->s_no; ?></td>
+                                                    <td><?= $i++; ?></td>
+                                                    <td><?= $row['m_username']; ?></td>
+                                                    <td><?= $row['s_no']; ?></td>
+
                                                     <td>
-                                                        <?= $obj[$i]->sno; ?>
+                                                        <a data-id="<?= $row['s_no']; ?>" href="s_action?deleteall=<?= $row['s_no']; ?>" type="button" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></a>
                                                     </td>
                                                 </tr>
 
@@ -155,12 +136,46 @@ include '../apiurl.php';
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
         });
-
-        var loader = document.getElementById('preloader');
-
-        window.addEventListener('load', function() {
-            loader.style.display = 'none';
+        $(".delete-btn").click(function(e) {
+            let userId = $(this).data('id');
+            e.preventDefault();
+            deleteConfirm(userId);
         })
+
+        function deleteConfirm(userId) {
+            Swal.fire({
+                title: 'ຕ້ອງການຈະລົບໃບ​ລົງ​ຄະ​ແນນອອກບໍ່?',
+
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ຕົກລົງ',
+                cancelButtonText: 'ຍົກເລີກ',
+                showLoaderOnConfirm: true,
+                preConfirm: function() {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                url: 's_action',
+                                type: 'GET',
+                                data: 'deleteall=' + userId,
+                            })
+                            .done(function() {
+                                Swal.fire({
+                                    title: 'ລົບຂໍ້ມູນສຳເລັດແລ້ວ',
+
+                                    icon: 'success',
+                                }).then(() => {
+                                    document.location.href = 'deletesheet';
+                                })
+                            })
+                            .fail(function() {
+                                Swal.fire('Oops...', 'Something went wrong with ajax !', 'error')
+                                window.location.reload();
+                            });
+                    });
+                },
+            });
+        }
     </script>
 
 </body>

@@ -6,15 +6,16 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include "../config.php";
 
-$nchecks = array();
-foreach ($conn->query('SELECT count(s_no) / 20 as sno, s_no FROM nscore group by s_no order by sno asc') as $row) {
-    $ncheck = array(
-        
+$nc_id = $_GET['nc_id'];
+
+$barcodes = array();
+foreach ($conn->query("SELECT ns.s_no, m.m_username FROM nscore as ns inner join member as m on ns.m_id = m.m_id where ns.nc_id = '$nc_id' AND ns.nsc_result = 0") as $row) {
+    $barcode = array(
         's_no' => $row['s_no'],
-        'sno' => $row['sno'],
+        'm_username' => $row['m_username'],
     );
-    array_push($nchecks, $ncheck);
+    array_push($barcodes, $barcode);
 }
-echo json_encode($nchecks);
+echo json_encode($barcodes);
 $conn = null;
 ?>

@@ -12,8 +12,9 @@ $nc_name = "";
 $nc_age = "";
 $nc_phak = "";
 $nc_lat = "";
-$nc_kammaban = "";
+$nc_women = "";
 $nc_part = "";
+$nc_reason = "";
 $nc_pic = "";
 
 
@@ -23,8 +24,9 @@ if (isset($_POST['add'])) {
 	$nc_age = $_POST['nc_age'];
 	$nc_phak = $_POST['nc_phak'];
 	$nc_lat = $_POST['nc_lat'];
-	$nc_kammaban = $_POST['nc_kammaban'];
+	$nc_women = $_POST['nc_women'];
 	$nc_part = $_POST['nc_part'];
+	$nc_reason = $_POST['nc_reason'];
 
 	if (isset($_FILES['nc_pic']['name']) && ($_FILES['nc_pic']['name'] != "")) {
 
@@ -40,9 +42,9 @@ if (isset($_POST['add'])) {
 		$upicture = "";
 	}
 
-	$query = "INSERT INTO newcandidate(nc_name,nc_age,nc_phak,nc_lat,nc_kammaban,nc_part,nc_pic)VALUES(?,?,?,?,?,?,?)";
+	$query = "INSERT INTO newcandidate(nc_name,nc_age,nc_phak,nc_lat,nc_women,nc_part,nc_reason,nc_pic)VALUES(?,?,?,?,?,?,?,?)";
 	$stmt = $conn->prepare($query);
-	$stmt->bind_param("sssssss", $nc_name, $nc_age, $nc_phak, $nc_lat, $nc_kammaban, $nc_part, $pic_rand);
+	$stmt->bind_param("ssssssss", $nc_name, $nc_age, $nc_phak, $nc_lat, $nc_women, $nc_part, $nc_reason, $pic_rand);
 	$stmt->execute();
 	move_uploaded_file($_FILES['nc_pic']['tmp_name'], $upicture);
 
@@ -91,8 +93,9 @@ if (isset($_POST['update'])) {
 	$nc_age = $_POST['nc_age'];
 	$nc_phak = $_POST['nc_phak'];
 	$nc_lat = $_POST['nc_lat'];
-	$nc_kammaban = $_POST['nc_kammaban'];
+	$nc_women = $_POST['nc_women'];
 	$nc_part = $_POST['nc_part'];
+	$nc_reason = $_POST['nc_reason'];
 	$oldpic = $_POST['oldpic'];
 
 	if (isset($_FILES['nc_pic']['name']) && ($_FILES['nc_pic']['name'] != "")) {
@@ -114,9 +117,9 @@ if (isset($_POST['update'])) {
 	}
 
 
-	$query = "UPDATE newcandidate SET nc_name=?, nc_age=?, nc_phak=?, nc_lat=?, nc_kammaban=?, nc_part=?, nc_pic=? WHERE nc_id=?";
+	$query = "UPDATE newcandidate SET nc_name=?, nc_age=?, nc_phak=?, nc_lat=?, nc_women=?, nc_part=?, nc_reason=?, nc_pic=? WHERE nc_id=?";
 	$stmt = $conn->prepare($query);
-	$stmt->bind_param("sssssssi", $nc_name, $nc_age, $nc_phak, $nc_lat, $nc_kammaban, $nc_part, $nnc_pic, $nc_id);
+	$stmt->bind_param("ssssssssi", $nc_name, $nc_age, $nc_phak, $nc_lat, $nc_women, $nc_part, $nc_reason, $nnc_pic, $nc_id);
 	$stmt->execute();
 
 	echo "<script>

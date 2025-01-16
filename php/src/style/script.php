@@ -22,3 +22,5 @@
 <script src="../assets/vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="../assets/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+

@@ -5,7 +5,7 @@
             <img src="../assets/img/mem.png" alt="">
             <span class="d-none d-lg-block fs-5">ກະ​ຊວ​ງ​ພະ​ລັງ​ງານ ແລະ ບໍ່​ແຮ່</span>
         </div>
-        <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
+        <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
     <nav class="header-nav ms-auto">

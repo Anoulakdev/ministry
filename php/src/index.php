@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <link href="assets/img/mem.png" rel="icon">
-
+    
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,13 +36,12 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                            <div class="d-flex justify-content-center pt-5">
+                            <div class="d-flex justify-content-center py-5">
                                 <div class="logo d-flex align-items-center w-auto">
                                     <img src="assets/img/mem.png" alt="">
                                     <span>ກະ​ຊວ​ງ​ພະ​ລັງ​ງານ ແລະ ບໍ່​ແຮ່</span>
                                 </div>
                             </div><!-- End Logo -->
-                            <p class="text-danger">(ທາບ​ທາມ​ຮອບ 2)</p>
 
                             <div class="card mb-3">
 

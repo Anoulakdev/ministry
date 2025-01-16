@@ -1,6 +1,6 @@
 <?php
 include '../config.php';
-$query = "SELECT count(DISTINCT m_id) as cmid, count(sc.nc_id) - sum(sc.nsc_result) as tores, sum(sc.nsc_result) as scres, nc.nc_id, nc.nc_name, nc.nc_age, nc.nc_part, nc.nc_pic FROM nscore as sc right join newcandidate as nc on sc.nc_id = nc.nc_id group by nc.nc_name order by scres DESC, nc.nc_id ASC";
+$query = "SELECT sum(sc.nsc_result) as scres, nc.nc_id, nc.nc_name, nc.nc_age, nc.nc_part, nc.nc_pic FROM nscore as sc right join newcandidate as nc on sc.nc_id = nc.nc_id group by nc.nc_name order by scres DESC, nc.nc_id ASC";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -8,6 +8,12 @@ $data = array();
 while ($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
+
+$sql10 = "SELECT count(DISTINCT s_no) as sno FROM nscore";
+$result10 = $conn->query($sql10);
+$row10 = $result10->fetch_assoc();
+$sno = $row10['sno'];
+
 ?>
 <table class="table table-bordered" id="table">
     <thead>
@@ -43,29 +49,39 @@ while ($row = $result->fetch_assoc()) {
                     <td class="text-center fs-4 fw-bold" width="9%">0</td>
                 <?php } ?>
 
-                <?php if ($row['tores']) { ?>
-                    <td class="text-center fs-4 fw-bold" width="9%"><?= $row['tores']; ?></td>
+                <?php if ($row['scres']) { ?>
+                    <td class="text-center fs-4 fw-bold" width="9%">
+                        <?php $scres = $row['scres'];
+                        $tores = $sno - $scres;
+                        ?> <?= $tores; ?>
+                    </td>
                 <?php } else { ?>
-                    <td class="text-center fs-4 fw-bold" width="9%">0</td>
+                    <td class="text-center fs-4 fw-bold" width="9%"><?= $sno; ?></td>
                 <?php } ?>
 
-               
-                <?php if ($row['cmid']) { ?>
-                    <td class="text-center fs-4 fw-bold" width="13%"><?php $cmid = $row['cmid'];
-                    $not = $row['tores'];
-                    $percent = ($not / $cmid) * 100;
-                    ?> <?= number_format($percent, 2); ?> %</td>
+
+                <?php if ($row['scres']) { ?>
+                    <td class="text-center fs-4 fw-bold" width="13%"><?php $scres = $row['scres'];
+                                                                        $tores = $sno - $scres;
+                                                                        $percent = ($tores / $sno) * 100;
+                                                                        ?> <?= number_format($percent, 2); ?> %</td>
                 <?php } else { ?>
-                    <td class="text-center fs-4 fw-bold" width="13%">0.00 %</td>
+                    <td class="text-center fs-4 fw-bold" width="13%"><?php if ($sno) {
+                                                                            $scres = $row['scres'];
+                                                                            $tores = $sno - $scres;
+                                                                            $percent = ($tores / $sno) * 100;
+                                                                        } else {
+                                                                            $percent = '0.00';
+                                                                        } ?> <?= number_format($percent, 2); ?> %</td>
                 <?php } ?>
 
-                
+
             </tr>
         <?php } ?>
     </tbody>
     <tfoot>
         <?php
-        $query1 = "SELECT sum(nsc_result) as scres, count(nc_id) - sum(nsc_result) as tores FROM nscore";
+        $query1 = "SELECT sum(nsc_result) as scres FROM nscore";
         $stmt1 = $conn->prepare($query1);
         $stmt1->execute();
         $result1 = $stmt1->get_result();
@@ -79,8 +95,11 @@ while ($row = $result->fetch_assoc()) {
                     <td class="text-center fs-3 fw-bold" width="9%">0</td>
                 <?php } ?>
 
-                <?php if ($row1['tores']) { ?>
-                    <td class="text-center fs-3 fw-bold" width="9%"><?= $row1['tores']; ?></td>
+                <?php if ($row1['scres']) { ?>
+                    <td class="text-center fs-3 fw-bold" width="9%"><?php $scres = $row1['scres'];
+                                                                    $multi = $sno * 20;
+                                                                    $tores = $multi - $scres;
+                                                                    ?> <?= $tores; ?></td>
                 <?php } else { ?>
                     <td class="text-center fs-3 fw-bold" width="9%">0</td>
                 <?php } ?>
