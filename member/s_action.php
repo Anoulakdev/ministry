@@ -5,12 +5,15 @@ include '../config.php';
 include '../style/sweetalert.php';
 include 'status.php';
 
+
 $update = false;
 $nsc_id = "";
 $m_id = "";
 $s_no = "";
 $nc_id = "";
 $nsc_result = "";
+
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$m_id = $_POST['m_id'];
@@ -32,10 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 });
             </script>";
 			header("refresh:2; url=addscore");
-			ob_end_flush();
-			exit;
+			exit; // หยุดการทำงานเพิ่มเติม
 		}
 
+		// ตรวจสอบว่าค่า nc_id[0] และ nc_id[1] ซ้ำกันหรือไม่
 		if ($nc_ids[0] == $nc_ids[1] || $nc_ids[0] == $nc_ids[2] || $nc_ids[1] == $nc_ids[2]) {
 			echo "<script>
                 $(document).ready(function() {
@@ -49,10 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 });
             </script>";
 			header("refresh:2; url=addscore");
-			ob_end_flush();
-			exit;
+			exit; // หยุดการทำงานเพิ่มเติม
 		}
 
+		// ตรวจสอบว่า nc_id[2] มีค่ามากกว่า 28 หรือไม่
 		if ($nc_ids[0] > 20 || $nc_ids[1] > 20 || $nc_ids[2] > 20) {
 			echo "<script>
                 $(document).ready(function() {
@@ -66,8 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 });
             </script>";
 			header("refresh:2; url=addscore");
-			ob_end_flush();
-			exit;
+			exit; // หยุดการทำงานเพิ่มเติม
 		}
 	}
 
@@ -80,34 +82,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$row_cnt = $result->num_rows;
 
 		if ($row_cnt > 0) {
-			echo "<script>
-			$(document).ready(function() {
-				Swal.fire({
-					position: 'center',
-					icon: 'info',
-					title: 'ໃບ​ບິນ​ນີ້​ໄດ້​ລົງ​ຄະ​ແນນແລ້ວ',
-					showConfirmButton: false,
-					timer: 2000
-				  });
-			});
-			</script>";
 
-			if (isset($result)) $result->free();
-			if (isset($checksno)) $checksno->free();
-			if (isset($conn)) $conn->close();
-			ob_end_flush();
+			echo "<script>
+		$(document).ready(function() {
+			Swal.fire({
+				position: 'center',
+				icon: 'info',
+				title: 'ໃບ​ບິນ​ນີ້​ໄດ້​ລົງ​ຄະ​ແນນແລ້ວ',
+				showConfirmButton: false,
+				timer: 2000
+			  });
+		});
+		</script>";
+
 			header("refresh:2; url=addscore");
-			exit;
 		} else {
-			$stmt = null;
+
 
 			foreach ($nc_ids as $nc_id) {
+				// Insert into nscore with nsc_result = 0 (checkbox selected)
 				$insert_query = "INSERT INTO nscore (m_id, s_no, nc_id, nsc_result) VALUES (?, ?, ?, 0)";
 				$stmt = $conn->prepare($insert_query);
 				$stmt->bind_param("ssi", $m_id, $s_no, $nc_id);
 				$stmt->execute();
 			}
 
+			// Insert for unselected candidates with nsc_result = 1
 			$unselected_query = "SELECT nc_id FROM newcandidate WHERE nc_id NOT IN (" . implode(',', $nc_ids) . ")";
 			$unselected_result = $conn->query($unselected_query);
 
@@ -118,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$stmt->bind_param("ssi", $m_id, $s_no, $unselected_nc_id);
 				$stmt->execute();
 			}
+
 
 			echo "<script>
 				$(document).ready(function() {
@@ -131,36 +132,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				});
 				</script>";
 
-			// ปิดทรัพยากร
-			if (isset($stmt)) $stmt->close();
-			if (isset($unselected_result)) $unselected_result->free();
-			if (isset($result)) $result->free();
-			if (isset($checksno)) $checksno->free();
-			if (isset($conn)) $conn->close();
-			ob_end_flush();
-
 			header("refresh:2; url=addscore");
-			exit;
 		}
 	} else {
 		echo "<script>
-			$(document).ready(function() {
-				Swal.fire({
-					position: 'center',
-					icon: 'error',
-					title: 'ໃບ​ລົງ​ຄະ​ແນນ​ ບໍ່​ມີ​ໃນ​ລະ​ບົບ​',
-					showConfirmButton: false,
-					timer: 2000
-				  });
-			});
-			</script>";
+				$(document).ready(function() {
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'ໃບ​ລົງ​ຄະ​ແນນ​ ບໍ່​ມີ​ໃນ​ລະ​ບົບ​',
+						showConfirmButton: false,
+						timer: 2000
+					  });
+				});
+				</script>";
 
-		if (isset($checksno)) $checksno->free();
-		if (isset($conn)) $conn->close();
-		ob_end_flush();
 		header("refresh:2; url=addscore");
-		exit;
 	}
 }
 
-ob_end_flush(); // fallback ถ้ายังไม่ออกก่อนหน้านี้
+ob_end_flush();
