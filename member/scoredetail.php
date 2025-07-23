@@ -77,11 +77,11 @@ ob_end_flush();
                                             <th rowspan="2">​ຊື່ ແລະ ນາມ​ສະ​ກຸນ</th>
                                             <th rowspan="2">​ອາ​ຍຸ</th>
                                             <th colspan="3" class="text-center">ຕຳ​ແໜ່ງ</th>
-                                            <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
-                                            <th rowspan="2">ໝາຍ​ເຫດ</th>
+                                            <th rowspan="2">ທິດ​ສະ​ດີ</th>
+                                            <th rowspan="2">ກົມ​ກອງ​</th>
                                         </tr>
                                         <tr>
-                                            <th>ແມ່​ຍິງ</th>
+                                            <th>ກຳ​ມະ​ບານ</th>
                                             <th>​ລັດ</th>
                                             <th>ພັກ</th>
                                         </tr>
@@ -121,11 +121,11 @@ ob_end_flush();
                                                 </td>
                                                 <td class="text-start"><?= $obj[$i]->nc_name; ?></td>
                                                 <td><?= $obj[$i]->nc_age; ?></td>
-                                                <td><?= $obj[$i]->nc_women; ?></td>
+                                                <td><?= $obj[$i]->nc_kammaban; ?></td>
                                                 <td><?= $obj[$i]->nc_lat; ?></td>
                                                 <td><?= $obj[$i]->nc_phak; ?></td>
+                                                <td><?= $obj[$i]->theory; ?></td>
                                                 <td><?= $obj[$i]->nc_part; ?></td>
-                                                <td><?= $obj[$i]->nc_reason; ?></td>
                                             </tr>
 
                                         <?php } ?>

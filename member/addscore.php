@@ -50,10 +50,11 @@
                                     <br>
                                     <br>
                                     <div class="col-12">
-                                        <h4><i class="bi bi-asterisk"></i> 3 ສ​ະ​ຫາຍທີ່​ທ່ານບໍ່​ເລືອກເອົາ</h4>
+                                        <h4><i class="bi bi-asterisk"></i> 4 ສ​ະ​ຫາຍທີ່​ທ່ານບໍ່​ເລືອກເອົາ</h4>
                                         <input type="text" name="nc_id[]" id="nc_id_1" class="form-control mb-3" maxlength="2" placeholder="ຜູ້​ທີ່ 1" required>
                                         <input type="text" name="nc_id[]" id="nc_id_2" class="form-control mb-3" maxlength="2" placeholder="ຜູ້​ທີ່ 2" required>
-                                        <input type="text" name="nc_id[]" id="nc_id_3" class="form-control" maxlength="2" placeholder="ຜູ້​ທີ່ 3" required>
+                                        <input type="text" name="nc_id[]" id="nc_id_3" class="form-control mb-3" maxlength="2" placeholder="ຜູ້​ທີ່ 3" required>
+                                        <input type="text" name="nc_id[]" id="nc_id_4" class="form-control" maxlength="2" placeholder="ຜູ້​ທີ່ 4" required>
                                     </div>
                                 </div>
                             </form>
@@ -88,6 +89,8 @@
                 } else if (activeElement.id === "nc_id_2") {
                     document.getElementById("nc_id_3").focus();
                 } else if (activeElement.id === "nc_id_3") {
+                    document.getElementById("nc_id_4").focus();
+                } else if (activeElement.id === "nc_id_4") {
                     document.getElementById("scanForm").submit(); // Submit the form after the last field
                 }
             }

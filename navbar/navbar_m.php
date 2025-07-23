@@ -2,8 +2,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <div href="index.html" class="logo d-flex align-items-center">
-            <img src="../assets/img/mem.png" alt="">
-            <span class="d-none d-lg-block fs-5">ກະ​ຊວ​ງ​ພະ​ລັງ​ງານ ແລະ ບໍ່​ແຮ່</span>
+            <img src="../assets/img/mem1.png" alt="">
+            <span class="d-none d-lg-block fs-5">ກະ​ຊວ​ງ​ອຸດ​ສາ​ຫະ​ກ​ຳ ແລະ ການ​ຄ້າ</span>
         </div>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

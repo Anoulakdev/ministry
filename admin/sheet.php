@@ -127,7 +127,7 @@
                                                     $sql1 = $conn->query("SELECT COUNT(s_no) AS sno FROM nscore WHERE s_no = " . $row['s_no']);
                                                     $row1 = $sql1->fetch_assoc();
                                                     $sno = $row1['sno'];
-                                                    $countsno = $sno / 20;
+                                                    $countsno = $sno / 27;
 
                                                     if ($countsno == 1) {
                                                         echo "<td class='text-success'>ໃບ​ບິນ​ນີ້​ລົງ​ຄົບ​ຈຳ​ນວນ</td>";

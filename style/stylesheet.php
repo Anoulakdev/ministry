@@ -1,4 +1,4 @@
-<link href="../assets/img/mem.png" rel="icon">
+<link href="../assets/img/mem1.png" rel="icon">
 
 <!-- Vendor CSS Files -->
 <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

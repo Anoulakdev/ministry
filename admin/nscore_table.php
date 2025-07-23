@@ -22,7 +22,7 @@ $sno = $row10['sno'];
             <th width="12%" class="fs-3">ຮູບ​ພາບ</th>
             <th width="24%" class="fs-3">ຊື່​ຜູ້​ສະ​ໝັກ</th>
             <th width="9%" class="fs-3">ອາ​ຍຸ</th>
-            <th width="16%" class="fs-3">ບ່ອນ​ປະ​ຈຳ​ການ</th>
+            <th width="16%" class="fs-3">ກົມ​ກອງ</th>
             <th width="9%" class="fs-3">​ຄະ​ແນນໄດ້</th>
             <th width="9%" class="fs-3">​ຄະ​ແນນ​ເສຍ</th>
             <th width="13%" class="fs-3">ສະ​ເລ່ຍ​ຄະ​ແນນ​ເສຍ</th>
@@ -97,7 +97,7 @@ $sno = $row10['sno'];
 
                 <?php if ($row1['scres']) { ?>
                     <td class="text-center fs-3 fw-bold" width="9%"><?php $scres = $row1['scres'];
-                                                                    $multi = $sno * 20;
+                                                                    $multi = $sno * 27;
                                                                     $tores = $multi - $scres;
                                                                     ?> <?= $tores; ?></td>
                 <?php } else { ?>

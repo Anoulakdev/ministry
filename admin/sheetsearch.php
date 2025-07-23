@@ -101,7 +101,7 @@ ob_end_flush();
                                                 <th rowspan="2">ກົມ​ກອງ​ບ່ອນ​ປະ​ຈຳ​ການ</th>
                                             </tr>
                                             <tr>
-                                                <th>ແມ່​ຍິງ</th>
+                                                <th>ກຳ​ມະ​ບານ</th>
                                                 <th>​ລັດ</th>
                                                 <th>ພັກ</th>
                                             </tr>
@@ -141,7 +141,7 @@ ob_end_flush();
                                                     </td>
                                                     <td class="text-start"><?= $obj[$i]->nc_name; ?></td>
                                                     <td><?= $obj[$i]->nc_age; ?></td>
-                                                    <td><?= $obj[$i]->nc_women; ?></td>
+                                                    <td><?= $obj[$i]->nc_kammaban; ?></td>
                                                     <td><?= $obj[$i]->nc_lat; ?></td>
                                                     <td><?= $obj[$i]->nc_phak; ?></td>
                                                     <td><?= $obj[$i]->nc_part; ?></td>

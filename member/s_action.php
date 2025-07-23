@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$nc_ids = $_POST['nc_id'];
 
 	// ตรวจสอบว่า nc_id มีค่าเป็น array และมีข้อมูลอย่างน้อย 3 รายการ
-	if (count($nc_ids) == 3) {
-		if ($nc_ids[0] == '' || $nc_ids[1] == '' || $nc_ids[2] == '') {
+	if (count($nc_ids) == 4) {
+		if ($nc_ids[0] == '' || $nc_ids[1] == '' || $nc_ids[2] == '' || $nc_ids[3] == '') {
 			echo "<script>
                 $(document).ready(function() {
                     Swal.fire({
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		// ตรวจสอบว่าค่า nc_id[0] และ nc_id[1] ซ้ำกันหรือไม่
-		if ($nc_ids[0] == $nc_ids[1] || $nc_ids[0] == $nc_ids[2] || $nc_ids[1] == $nc_ids[2]) {
+		if ($nc_ids[0] == $nc_ids[1] || $nc_ids[0] == $nc_ids[2] || $nc_ids[0] == $nc_ids[3] || $nc_ids[1] == $nc_ids[2] || $nc_ids[1] == $nc_ids[3] || $nc_ids[2] == $nc_ids[3]) {
 			echo "<script>
                 $(document).ready(function() {
                     Swal.fire({
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		// ตรวจสอบว่า nc_id[2] มีค่ามากกว่า 28 หรือไม่
-		if ($nc_ids[0] > 20 || $nc_ids[1] > 20 || $nc_ids[2] > 20) {
+		if ($nc_ids[0] > 27 || $nc_ids[1] > 27 || $nc_ids[2] > 27 || $nc_ids[3] > 27) {
 			echo "<script>
                 $(document).ready(function() {
                     Swal.fire({

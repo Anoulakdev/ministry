@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MEM VOTE</title>
+    <title>MOIC VOTE</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -25,8 +25,8 @@
 
                             <div class="d-flex justify-content-center py-5">
                                 <div class="logo d-flex align-items-center w-auto">
-                                    <img src="../assets/img/mem.png" alt="">
-                                    <span>ກະ​ຊວ​ງ​ພະ​ລັງ​ງານ ແລະ ບໍ່​ແຮ່</span>
+                                    <img src="../assets/img/mem1.png" alt="">
+                                    <span>ກະ​ຊວ​ງ​ອຸດ​ສາ​ຫະ​ກ​ຳ ແລະ ການ​ຄ້າ</span>
                                 </div>
                             </div><!-- End Logo -->
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 header("Access-Control-Allow-Origin: *");
 header("content-type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET");
@@ -15,14 +15,13 @@ foreach ($conn->query("SELECT nc.*, ns.s_no FROM nscore as ns inner join newcand
         'nc_pic' => $row['nc_pic'],
         'nc_name' => $row['nc_name'],
         'nc_age' => $row['nc_age'],
-        'nc_women' => $row['nc_women'],
+        'nc_kammaban' => $row['nc_kammaban'],
         'nc_lat' => $row['nc_lat'],
         'nc_phak' => $row['nc_phak'],
         'nc_part' => $row['nc_part'],
-        'nc_reason' => $row['nc_reason'],
+        'theory' => $row['theory'],
     );
     array_push($barcodes, $barcode);
 }
 echo json_encode($barcodes);
 $conn = null;
-?>
