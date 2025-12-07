@@ -156,7 +156,7 @@ $s_kill2 = $row16['s_kill2'];
                                         <input type="hidden" name="s_id" value="<?= $s_id; ?>">
                                         <div class="d-flex justify-content-start col-md-6 col-12">
                                             <div class="me-3">
-                                                <label for="s_kill1" class="form-label me-3">ເປົ້າ​ໝາຍ​ໃໝ່(ເລ​ຂາ)</label>
+                                                <label for="s_kill1" class="form-label me-3">ເປົ້າ​ໝາຍ​ໃໝ່(ຄະ​ນະ​ພັກ)</label>
                                                 <input type="text" name="s_kill1" id="s_kill1" class="form-control me-3" value="<?= $s_kill1; ?>" required>
                                             </div>
                                             <!-- <div class="me-3">
