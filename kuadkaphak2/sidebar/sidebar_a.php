@@ -74,6 +74,20 @@
         </li> -->
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch1">
+                <i class="bi bi-receipt"></i>
+                <span>ລາຍ​ລະ​ອຽດລົງ​ຄະ​ແນນ(ປະ​ທານ)</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch2">
+                <i class="bi bi-receipt"></i>
+                <span>ລາຍ​ລະ​ອຽດລົງ​ຄະ​ແນນ(ຮອງປະ​ທານ)</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" href="deletesheet">
                 <i class="bi bi-receipt"></i>
                 <span>​​ລົບ​ໃບ​ລົງ​ຄະ​ແນນ​ຜິດ</span>

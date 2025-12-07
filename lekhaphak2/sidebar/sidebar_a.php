@@ -52,6 +52,20 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch1">
+                <i class="bi bi-receipt"></i>
+                <span>ລາຍ​ລະ​ອຽດລົງ​ຄະ​ແນນ(ເລ​ຂາ​)</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch2">
+                <i class="bi bi-receipt"></i>
+                <span>ລາຍ​ລະ​ອຽດລົງ​ຄະ​ແນນ(ຮອງເລ​ຂາ​)</span>
+            </a>
+        </li>
+
         <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="membersearch">
                 <i class="bi bi-receipt"></i>
