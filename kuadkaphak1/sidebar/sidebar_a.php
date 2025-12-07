@@ -52,13 +52,6 @@
             </a>
         </li> -->
 
-        <!-- <li class="nav-item">
-            <a class="nav-link collapsed" href="sheetsearch">
-                <i class="bi bi-receipt"></i>
-                <span>ລາຍ​ລະ​ອຽດ​ໃບ​ລົງ​ຄະ​ແນນ</span>
-            </a>
-        </li> -->
-
         <li class="nav-item">
             <a class="nav-link collapsed" href="prreason">
                 <i class="bi bi-receipt"></i>
@@ -70,6 +63,20 @@
             <a class="nav-link collapsed" href="dpreason">
                 <i class="bi bi-receipt"></i>
                 <span>ຄຳ​ເຫັນ​ຕໍ່​ຄະ​ນະ​ຊຸດ​ເກົ່າ(ຮອງປ​ະ​ທານ)</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch1">
+                <i class="bi bi-receipt"></i>
+                <span>ລົງ​ຄະ​ແນນ​ເປົ້າ​ໝາຍ​ໃໝ່(ປະ​ທານ)</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch2">
+                <i class="bi bi-receipt"></i>
+                <span>ລົງ​ຄະ​ແນນ​ເປົ້າ​ໝາຍ​ໃໝ່(ຮອງປະ​ທານ)</span>
             </a>
         </li>
 

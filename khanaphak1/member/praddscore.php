@@ -141,8 +141,10 @@ $stmt1->close();
                                             name="nc1_id[]"
                                             id="nc1_id_<?= $i; ?>"
                                             class="form-control mb-3"
-                                            placeholder="ຜູ້ທີ່ <?= $i; ?>">
+                                            placeholder="ຜູ້ທີ່ <?= $i; ?>"
+                                            <?= $i == 1 ? 'required' : '' ?>>
                                     <?php endfor; ?>
+
 
                                 </div>
 

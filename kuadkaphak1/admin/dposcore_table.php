@@ -21,8 +21,8 @@ $sno = $row10['sno'];
         <tr class="text-center align-middle" style="height: 80px;">
             <th class="fs-5">ລ/ດ</th>
             <th class="fs-5">ຊື່​ຜູ້​ສະ​ໝັກ</th>
-            <th class="fs-5">ສືບ​ຕໍ່</th>
-            <th class="fs-5">ບໍ່ສືບ​ຕໍ່</th>
+            <th class="fs-5">ເຫັນ​ດີ</th>
+            <th class="fs-5">ບໍ່ເຫັນ​ດີ</th>
             <th class="fs-5">ສະ​ເລ່ຍ​ຄະ​ແນນ​ເສຍ</th>
         </tr>
     </thead>

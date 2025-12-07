@@ -45,6 +45,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="sheetsearch1">
+                <i class="bi bi-receipt"></i>
+                <span>ລົງ​ຄະ​ແນນ​ເປົ້າ​ໝາຍ​ໃໝ່</span>
+            </a>
+        </li>
+
         <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="membersearch">
                 <i class="bi bi-receipt"></i>

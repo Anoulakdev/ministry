@@ -55,29 +55,29 @@ if (isset($_POST['add'])) {
 	// }
 
 	// ตรวจสอบค่าที่ว่าง และว่าทุกค่าเป็นตัวเลข
-	// foreach ($nc1_ids as $val) {
-	// 	$val = trim($val);
-	// 	if ($val === '' || !is_numeric($val)) {
-	// 		echo "<script>
-	//             $(document).ready(function() {
-	//                 Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຄົບ ຫຼື ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
-	//             });
-	//         </script>";
-	// 		header("refresh:2; url=praddscore");
-	// 		exit;
-	// 	}
-	// 	// แปลงเป็น int เพื่อความปลอดภัย
-	// 	$val = (int)$val;
-	// 	if ($val > $cnc1 || $val < 1) {
-	// 		echo "<script>
-	//             $(document).ready(function() {
-	//                 Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
-	//             });
-	//         </script>";
-	// 		header("refresh:2; url=praddscore");
-	// 		exit;
-	// 	}
-	// }
+	foreach ($nc1_ids as $val) {
+		$val = trim($val);
+		if ($val === '' || !is_numeric($val)) {
+			echo "<script>
+	            $(document).ready(function() {
+	                Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຄົບ ຫຼື ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
+	            });
+	        </script>";
+			header("refresh:2; url=praddscore");
+			exit;
+		}
+		// แปลงเป็น int เพื่อความปลอดภัย
+		$val = (int)$val;
+		if ($val > $cnc1 || $val < 1) {
+			echo "<script>
+	            $(document).ready(function() {
+	                Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
+	            });
+	        </script>";
+			header("refresh:2; url=praddscore");
+			exit;
+		}
+	}
 
 	// ตรวจสอบค่าซ้ำ
 	if (count($nc1_ids) !== count(array_unique($nc1_ids))) {

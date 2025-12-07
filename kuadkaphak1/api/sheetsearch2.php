@@ -6,13 +6,14 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include "../config.php";
 
-$s_no = $_GET['s_no'];
+// $s_no = $_GET['s_no'];
 
 $barcodes = array();
-foreach ($conn->query("SELECT nc.* FROM nscore as ns inner join newcandidate as nc on ns.nc_id = nc.nc_id where ns.s_no = '$s_no' AND ns.nsc_result = 0 order by nc.nc_id asc") as $row) {
+foreach ($conn->query("SELECT ns2.*, nc2.nc2_name, m.m_username FROM nscore2 as ns2 inner join newcandidate2 as nc2 on ns2.nc2_id = nc2.nc2_id inner join member as m on ns2.m_id = m.m_id order by ns2.s_no asc") as $row) {
     $barcode = array(
-        'nc_pic' => $row['nc_pic'],
-        'nc_name' => $row['nc_name'],
+        's_no' => $row['s_no'],
+        'm_username' => $row['m_username'],
+        'nc2_name' => $row['nc2_name'],
     );
     array_push($barcodes, $barcode);
 }

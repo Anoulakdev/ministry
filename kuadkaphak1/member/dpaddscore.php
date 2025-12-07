@@ -107,13 +107,13 @@ $stmt1->close();
                                                                 name="osc2_result_<?= $row1['oc2_id']; ?>"
                                                                 value="1" checked
                                                                 onclick="toggleTextarea(<?= $row1['oc2_id']; ?>, true)">
-                                                            ສືບຕໍ່
+                                                            ເຫັນ​ດີ
 
                                                             <input type="radio"
                                                                 name="osc2_result_<?= $row1['oc2_id']; ?>"
                                                                 value="0"
                                                                 onclick="toggleTextarea(<?= $row1['oc2_id']; ?>, false)">
-                                                            ບໍ່ສືບຕໍ່
+                                                            ບໍ່ເຫັນ​ດີ
                                                         </td>
 
                                                         <td>
