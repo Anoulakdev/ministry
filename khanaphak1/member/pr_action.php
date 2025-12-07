@@ -22,6 +22,16 @@ if (isset($_POST['add'])) {
 	$s_no = isset($_POST['s_no']) ? trim($_POST['s_no']) : '';
 	$nc1_ids = isset($_POST['nc1_id']) && is_array($_POST['nc1_id']) ? $_POST['nc1_id'] : [];
 
+	// ❗ 1) กรองค่าว่างออกก่อน
+	$nc1_ids = array_filter($nc1_ids, function ($v) {
+		return trim($v) !== '';
+	});
+
+	// แปลงเป็น int ทุกค่า + sanitize
+	$nc1_ids = array_map(function ($v) {
+		return (int)trim($v);
+	}, $nc1_ids);
+
 	// ตรวจสอบ input พื้นฐาน
 	if ($m_id === '' || $s_no === '') {
 		echo "<script>
@@ -34,40 +44,40 @@ if (isset($_POST['add'])) {
 	}
 
 	// ตรวจสอบว่ามีจำนวนตาม $kill1
-	if (count($nc1_ids) != $kill1) {
-		echo "<script>
-            $(document).ready(function() {
-                Swal.fire({ position: 'center', icon: 'error', title: 'ຈຳນວນຜູ້ສະຫາຍຕ້ອງເເທ້ຈິງ $kill1 ຄົນ', showConfirmButton: false, timer: 2000 });
-            });
-        </script>";
-		header("refresh:2; url=praddscore");
-		exit;
-	}
+	// if (count($nc1_ids) != $kill1) {
+	// 	echo "<script>
+	//         $(document).ready(function() {
+	//             Swal.fire({ position: 'center', icon: 'error', title: 'ຈຳນວນຜູ້ສະຫາຍຕ້ອງເເທ້ຈິງ $kill1 ຄົນ', showConfirmButton: false, timer: 2000 });
+	//         });
+	//     </script>";
+	// 	header("refresh:2; url=praddscore");
+	// 	exit;
+	// }
 
 	// ตรวจสอบค่าที่ว่าง และว่าทุกค่าเป็นตัวเลข
-	foreach ($nc1_ids as $val) {
-		$val = trim($val);
-		if ($val === '' || !is_numeric($val)) {
-			echo "<script>
-                $(document).ready(function() {
-                    Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຄົບ ຫຼື ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
-                });
-            </script>";
-			header("refresh:2; url=praddscore");
-			exit;
-		}
-		// แปลงเป็น int เพื่อความปลอดภัย
-		$val = (int)$val;
-		if ($val > $cnc1 || $val < 1) {
-			echo "<script>
-                $(document).ready(function() {
-                    Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
-                });
-            </script>";
-			header("refresh:2; url=praddscore");
-			exit;
-		}
-	}
+	// foreach ($nc1_ids as $val) {
+	// 	$val = trim($val);
+	// 	if ($val === '' || !is_numeric($val)) {
+	// 		echo "<script>
+	//             $(document).ready(function() {
+	//                 Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຄົບ ຫຼື ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
+	//             });
+	//         </script>";
+	// 		header("refresh:2; url=praddscore");
+	// 		exit;
+	// 	}
+	// 	// แปลงเป็น int เพื่อความปลอดภัย
+	// 	$val = (int)$val;
+	// 	if ($val > $cnc1 || $val < 1) {
+	// 		echo "<script>
+	//             $(document).ready(function() {
+	//                 Swal.fire({ position: 'center', icon: 'error', title: 'ຂໍ້​ມູນ​ຜູ້​ສະ​ໝັກ​ບໍ່​ຖືກ​ຕ້ອງ', showConfirmButton: false, timer: 2000 });
+	//             });
+	//         </script>";
+	// 		header("refresh:2; url=praddscore");
+	// 		exit;
+	// 	}
+	// }
 
 	// ตรวจสอบค่าซ้ำ
 	if (count($nc1_ids) !== count(array_unique($nc1_ids))) {
@@ -90,14 +100,14 @@ if (isset($_POST['add'])) {
 
 	if ($row_check['cnt'] > 0) {
 		// ตรวจสอบว่ามีการลงคะแนนก่อนแล้วหรือไม่ (ใช้ prepared)
-		$stmt_check_oscore = $conn->prepare("SELECT COUNT(*) AS cnt FROM oscore1 WHERE s_no = ?");
-		$stmt_check_oscore->bind_param("s", $s_no);
-		$stmt_check_oscore->execute();
-		$res_oscore = $stmt_check_oscore->get_result();
-		$row_oscore = $res_oscore->fetch_assoc();
-		$stmt_check_oscore->close();
+		$stmt_check_nscore = $conn->prepare("SELECT COUNT(*) AS cnt FROM nscore1 WHERE s_no = ?");
+		$stmt_check_nscore->bind_param("s", $s_no);
+		$stmt_check_nscore->execute();
+		$res_nscore = $stmt_check_nscore->get_result();
+		$row_nscore = $res_nscore->fetch_assoc();
+		$stmt_check_nscore->close();
 
-		if ($row_oscore['cnt'] > 0) {
+		if ($row_nscore['cnt'] > 0) {
 			echo "<script>
                 $(document).ready(function() {
                     Swal.fire({ position: 'center', icon: 'info', title: 'ໃບ​ບິນ​ນີ້​ໄດ້​ລົງ​ຄະ​ແນນແລ້ວ', showConfirmButton: false, timer: 2000 });
@@ -111,29 +121,29 @@ if (isset($_POST['add'])) {
 			$error = false;
 
 			// INSERT oscore1 จาก radio inputs: ค้นหา key ที่ขึ้นต้นด้วย osc1_result_
-			foreach ($_POST as $key => $value) {
-				if (strpos($key, 'osc1_result_') === 0) {
-					$oc1_id = str_replace('osc1_result_', '', $key);
-					$oc1_id = (int)$oc1_id;
-					$osc1_result = trim($value);
+			// foreach ($_POST as $key => $value) {
+			// 	if (strpos($key, 'osc1_result_') === 0) {
+			// 		$oc1_id = str_replace('osc1_result_', '', $key);
+			// 		$oc1_id = (int)$oc1_id;
+			// 		$osc1_result = trim($value);
 
-					$osc1_reason_key = 'osc1_reason_' . $oc1_id;
-					$osc1_reason = isset($_POST[$osc1_reason_key]) ? trim($_POST[$osc1_reason_key]) : '';
+			// 		$osc1_reason_key = 'osc1_reason_' . $oc1_id;
+			// 		$osc1_reason = isset($_POST[$osc1_reason_key]) ? trim($_POST[$osc1_reason_key]) : '';
 
-					$insert_oscore = $conn->prepare("INSERT INTO oscore1 (m_id, s_no, oc1_id, osc1_result, osc1_reason) VALUES (?, ?, ?, ?, ?)");
-					if (!$insert_oscore) {
-						$error = true;
-						break;
-					}
-					$insert_oscore->bind_param("isiis", $m_id, $s_no, $oc1_id, $osc1_result, $osc1_reason);
-					if (!$insert_oscore->execute()) {
-						$error = true;
-					}
-					$insert_oscore->close();
+			// 		$insert_oscore = $conn->prepare("INSERT INTO oscore1 (m_id, s_no, oc1_id, osc1_result, osc1_reason) VALUES (?, ?, ?, ?, ?)");
+			// 		if (!$insert_oscore) {
+			// 			$error = true;
+			// 			break;
+			// 		}
+			// 		$insert_oscore->bind_param("isiis", $m_id, $s_no, $oc1_id, $osc1_result, $osc1_reason);
+			// 		if (!$insert_oscore->execute()) {
+			// 			$error = true;
+			// 		}
+			// 		$insert_oscore->close();
 
-					if ($error) break;
-				}
-			}
+			// 		if ($error) break;
+			// 	}
+			// }
 
 			// INSERT nscore1 สำหรับ nc1_ids
 			if (!$error) {

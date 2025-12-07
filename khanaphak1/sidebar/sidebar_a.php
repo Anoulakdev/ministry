@@ -17,12 +17,12 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="president1">
                 <i class="bi bi-person"></i>
                 <span>ຜູ້​ສະ​ໝັກ(ຄະ​ນະ​ປະ​ຈຳ​ພັກ)</span>
             </a>
-        </li>
+        </li> -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="president2">
@@ -59,12 +59,12 @@
             </a>
         </li> -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="prreason">
                 <i class="bi bi-receipt"></i>
                 <span>ຄຳ​ເຫັນ​ຕໍ່ຄະ​ນະ​ປະ​ຈຳ​ພັກ</span>
             </a>
-        </li>
+        </li> -->
 
         <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="dpreason">
@@ -80,12 +80,12 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="prscore1">
                 <i class="bi bi-sliders"></i>
                 <span>​ຜົນ​ຄະ​ແນນຄະ​ນະ​ປະ​ຈຳ​ພັກ</span>
             </a>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="prscore2">
                 <i class="bi bi-sliders"></i>

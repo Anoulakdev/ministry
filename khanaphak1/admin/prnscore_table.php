@@ -10,7 +10,7 @@ while ($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
 
-$sql10 = "SELECT count(DISTINCT s_no) as sno FROM oscore1";
+$sql10 = "SELECT count(DISTINCT s_no) as sno FROM nscore1";
 $result10 = $conn->query($sql10);
 $row10 = $result10->fetch_assoc();
 $sno = $row10['sno'];

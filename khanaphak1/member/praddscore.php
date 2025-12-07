@@ -88,9 +88,9 @@ $stmt1->close();
                                     <br>
 
                                     <!-- OLD CANDIDATE -->
-                                    <h4><i class="bi bi-asterisk"></i> ຄະນະບໍລິຫານງານຊຸດເກົ່າ</h4>
+                                    <!-- <h4><i class="bi bi-asterisk"></i> ຄະນະບໍລິຫານງານຊຸດເກົ່າ</h4> -->
 
-                                    <div class="scrollable-table">
+                                    <!-- <div class="scrollable-table">
                                         <table class="table">
                                             <thead class="table-light text-center align-middle">
                                                 <tr>
@@ -129,9 +129,9 @@ $stmt1->close();
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div> -->
 
-                                    <br>
+                                    <!-- <br> -->
 
                                     <!-- NEW CANDIDATE SELECT -->
                                     <h4><i class="bi bi-asterisk"></i> <?= $kill1 ?> ​ສະ​ຫາຍເປົ້າ​ໝາຍ​ໃໝ່</h4>
@@ -141,8 +141,7 @@ $stmt1->close();
                                             name="nc1_id[]"
                                             id="nc1_id_<?= $i; ?>"
                                             class="form-control mb-3"
-                                            placeholder="ຜູ້ທີ່ <?= $i; ?>"
-                                            required>
+                                            placeholder="ຜູ້ທີ່ <?= $i; ?>">
                                     <?php endfor; ?>
 
                                 </div>

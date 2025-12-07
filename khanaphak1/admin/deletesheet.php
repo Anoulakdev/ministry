@@ -60,7 +60,7 @@
 
 
                                 <?php
-                                $query = "SELECT DISTINCT m.m_username, osc1.s_no FROM oscore1 as osc1 inner join member as m on osc1.m_id = m.m_id";
+                                $query = "SELECT DISTINCT m.m_username, nsc1.s_no FROM nscore1 as nsc1 inner join member as m on nsc1.m_id = m.m_id";
                                 $stmt = $conn->prepare($query);
                                 $stmt->execute();
                                 $result = $stmt->get_result();
