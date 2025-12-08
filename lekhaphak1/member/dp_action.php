@@ -90,14 +90,14 @@ if (isset($_POST['add'])) {
 
 	if ($row_check['cnt'] > 0) {
 		// ตรวจสอบว่ามีการลงคะแนนก่อนแล้วหรือไม่ (ใช้ prepared)
-		$stmt_check_oscore = $conn->prepare("SELECT COUNT(*) AS cnt FROM oscore2 WHERE s_no = ?");
-		$stmt_check_oscore->bind_param("s", $s_no);
-		$stmt_check_oscore->execute();
-		$res_oscore = $stmt_check_oscore->get_result();
-		$row_oscore = $res_oscore->fetch_assoc();
-		$stmt_check_oscore->close();
+		$stmt_check_nscore = $conn->prepare("SELECT COUNT(*) AS cnt FROM nscore2 WHERE s_no = ?");
+		$stmt_check_nscore->bind_param("s", $s_no);
+		$stmt_check_nscore->execute();
+		$res_nscore = $stmt_check_nscore->get_result();
+		$row_nscore = $res_nscore->fetch_assoc();
+		$stmt_check_nscore->close();
 
-		if ($row_oscore['cnt'] > 0) {
+		if ($row_nscore['cnt'] > 0) {
 			echo "<script>
                 $(document).ready(function() {
                     Swal.fire({ position: 'center', icon: 'info', title: 'ໃບ​ບິນ​ນີ້​ໄດ້​ລົງ​ຄະ​ແນນແລ້ວ', showConfirmButton: false, timer: 2000 });
